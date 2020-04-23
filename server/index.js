@@ -26,8 +26,14 @@ app.get('/api/products', (req, res, next) => {
   `;
   db.query(sql)
     .then(result => {
-      // eslint-disable-next-line no-console
-      console.log(result.rows);
+      const products = result.rows;
+      res.status(200).json(products);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'An undexpected error occrured.'
+      });
     });
 });
 
