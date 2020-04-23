@@ -29,12 +29,7 @@ app.get('/api/products', (req, res, next) => {
       const products = result.rows;
       res.status(200).json(products);
     })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({
-        error: 'An undexpected error occrured.'
-      });
-    });
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
