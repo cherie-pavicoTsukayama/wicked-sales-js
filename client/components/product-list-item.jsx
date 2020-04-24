@@ -13,12 +13,12 @@ export default function ProductListItem(props) {
   }
 
   return (
-    <div key={props.product.productId} className="card item-card shadow-sm mb-3">
-      <img className="card-img-top" src={props.product.image} alt="" />
-      <div className="card-body">
-        <h5 className="card-title">{props.product.name}</h5>
-        <p className="text-muted">{convertedPrice}</p>
-        <p className="card-text">
+    <div key={props.product.productId} className="card item-card shadow-sm mb-3" >
+      <img className="card-img-top" src={props.product.image} alt="" id={props.product.productId} onClick={props.onClick}/>
+      <div className="card-body" id={props.product.productId} onClick={props.onClick}>
+        <h5 className="card-title" id={props.product.productId} onClick={props.onClick}>{props.product.name} </h5>
+        <p className="text-muted" id={props.product.productId} onClick={props.onClick}>{convertedPrice}</p>
+        <p className="card-text" id={props.product.productId} onClick={props.onClick}>
           {props.product.shortDescription}
         </p>
       </div>

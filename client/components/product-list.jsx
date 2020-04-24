@@ -8,7 +8,7 @@ export default class ProductList extends React.Component {
       products: []
     };
     this.createProductCards = this.createProductCards.bind(this);
-
+    this.handleClick = this.handleClick.bind(this);
   }
 
   getProducts() {
@@ -19,11 +19,14 @@ export default class ProductList extends React.Component {
   }
 
   createProductCards() {
-
     const itemCard = this.state.products.map(item => {
-      return <ProductListItem key={item.productId} product={item} />;
+      return <ProductListItem key={item.productId} product={item} onClick={this.handleClick}/>;
     });
     return itemCard;
+  }
+
+  handleClick(event) {
+    this.props.setView('details', { productId: parseInt(event.target.id) });
   }
 
   componentDidMount() {

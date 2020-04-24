@@ -1,14 +1,38 @@
 import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
+import ProductDetails from './product-details';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       message: null,
-      isLoading: true
+      isLoading: true,
+      view: {
+        name: 'catalog',
+        params: {}
+      }
     };
+    this.setView = this.setView.bind(this);
+    this.display = this.display.bind(this);
+  }
+
+  setView(name, productId) {
+    this.setState({
+      view: {
+        name: name,
+        params: productId
+      }
+    });
+  }
+
+  display() {
+    if (this.state.view.name === 'details') {
+      return <ProductDetails productId={this.state.view.params} setView={ this.setView }/>;
+    } else {
+      return <ProductList setView={ this.setView} />;
+    }
   }
 
   componentDidMount() {
@@ -24,9 +48,9 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <h1>{this.state.message}</h1>,
     <div>
-      { Header() }
+      <Header />
       <div>
-        <ProductList />
+        { this.display() }
       </div>
     </div>
 
