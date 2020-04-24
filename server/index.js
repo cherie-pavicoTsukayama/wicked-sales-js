@@ -36,7 +36,7 @@ app.get('/api/products/:productId', (req, res, next) => {
   const { productId } = req.params;
   const sql = `
   select *
-    from "product"
+    from "products"
    where "productId" = $1;
   `;
   if (isNaN(parseInt(productId))) {
@@ -52,7 +52,7 @@ app.get('/api/products/:productId', (req, res, next) => {
       if (result.rows.length === 0) {
         next(new ClientError(`Prodcut Id ${productId} does not exist.`, 404));
       } else {
-        return res.status(200).json({ item });
+        return res.status(200).json(item);
       }
     })
     .catch(err => next(err));
