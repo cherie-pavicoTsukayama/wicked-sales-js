@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './header';
-import ProductItem from './product-list-item';
+import ProdcutList from './product-list';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class App extends React.Component {
     <div>
       { Header() }
       <div>
-        { ProductItem() }
+        <ProdcutList />
       </div>
     </div>
 
