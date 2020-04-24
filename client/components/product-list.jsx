@@ -1,7 +1,7 @@
 import React from 'react';
-import ProdcutListItem from './product-list-item';
+import ProductListItem from './product-list-item';
 
-export default class ProdcutList extends React.Component {
+export default class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,9 +9,20 @@ export default class ProdcutList extends React.Component {
     };
   }
 
+  getProducts() {
+    fetch('/api/products')
+      .then(res => res.json())
+      .then(data => this.setState({ products: data }))
+      .catch(err => console.error(err));
+  }
+
+  componentDidMount() {
+    this.getProducts();
+  }
+
   render() {
     return (
-      <ProdcutListItem />
+      <ProductListItem />
     );
   }
 }
