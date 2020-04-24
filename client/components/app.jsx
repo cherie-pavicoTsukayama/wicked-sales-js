@@ -15,13 +15,24 @@ export default class App extends React.Component {
       }
     };
     this.setView = this.setView.bind(this);
+    this.display = this.display.bind(this);
   }
 
-  setView(name, params) {
+  setView(name, productId) {
     this.setState({
-      view: name,
-      params: params
+      view: {
+        name: name,
+        params: productId
+      }
     });
+  }
+
+  display() {
+    if (this.state.view.name === 'details') {
+      return <ProductDetails productId={this.state.view.params} setView={ this.setView }/>;
+    } else {
+      return <ProductList setView={ this.setView} />;
+    }
   }
 
   componentDidMount() {
@@ -37,12 +48,9 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <h1>{this.state.message}</h1>,
     <div>
-      { Header() }
+      <Header />
       <div>
-        <ProductList setView={ this.setView }/>
-      </div>
-      <div>
-        <ProductDetails />
+        { this.display() }
       </div>
     </div>
 
