@@ -16,6 +16,13 @@ export default class App extends React.Component {
     };
   }
 
+  setView(name, params) {
+    this.setState({
+      view: name,
+      params: params
+    });
+  }
+
   componentDidMount() {
     fetch('/api/health-check')
       .then(res => res.json())
