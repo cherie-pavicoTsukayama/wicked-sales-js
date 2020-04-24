@@ -1,0 +1,17 @@
+body {
+  background-color:rgb(240, 241, 241);
+}
+
+.header {
+  background-color: #252A2D;
+  color: white;
+}
+
+img {
+  height: 60%;
+  object-fit: contain;
+}
+
+.item-card {
+  width: 32%;
+}
