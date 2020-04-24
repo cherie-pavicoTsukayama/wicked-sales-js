@@ -22,7 +22,10 @@ export default class ProductList extends React.Component {
 
   render() {
     return (
-      <ProductListItem />
+      <div className="container mt-5">
+        <ProductListItem products={this.state.products}/>
+      </div>
+
     );
   }
 }
