@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ProductListItem(props) {
-  const price = '' + props.price;
+  const price = '' + props.product.price;
   let convertedPrice = '$';
   if (price.length < 4) {
     for (let i = 0; i < (price.length - 2); i++) {
@@ -13,13 +13,13 @@ export default function ProductListItem(props) {
   }
 
   return (
-    <div key={props.productId} className="card item-card shadow-sm mb-3">
-      <img className="card-img-top" src={props.image} alt="" />
+    <div key={props.product.productId} className="card item-card shadow-sm mb-3">
+      <img className="card-img-top" src={props.product.image} alt="" />
       <div className="card-body">
-        <h5 className="card-title">{props.name}</h5>
+        <h5 className="card-title">{props.product.name}</h5>
         <p className="text-muted">{convertedPrice}</p>
         <p className="card-text">
-          {props.shortDescription}
+          {props.product.shortDescription}
         </p>
       </div>
     </div>
