@@ -13,7 +13,7 @@ export default class ProductDetails extends React.Component {
     const price = '' + rawPrice;
     let convertedPrice = '$';
     if (price.length < 4) {
-      for (let i = 0; i < (price - 2); i++) {
+      for (let i = 0; i < (price.length - 2); i++) {
         convertedPrice += (price[i] + '.');
         convertedPrice += price.slice(0, 2);
       }
