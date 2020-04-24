@@ -1,4 +1,12 @@
+body {
+  background-color:rgb(240, 241, 241);
+}
+
 .header {
   background-color: #252A2D;
   color: white;
+}
+
+img {
+  object-fit: contain;
 }
