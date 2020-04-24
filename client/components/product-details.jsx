@@ -6,6 +6,7 @@ export default class ProductDetails extends React.Component {
     this.state = {
       product: null
     };
+    this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
   }
 
   convertPrice(rawPrice) {
@@ -22,6 +23,10 @@ export default class ProductDetails extends React.Component {
     return convertedPrice;
   }
 
+  handleClickBackToCatalog(event) {
+    this.props.setView('catalog', { productId: {} });
+  }
+
   componentDidMount() {
     fetch(`api/products/${this.props.productId.productId}`)
       .then(res => res.json())
@@ -36,8 +41,8 @@ export default class ProductDetails extends React.Component {
       return (
         <div className="container mt-3 mb-5">
           <div className="card d-flex flex-nowrap">
-            <div className="pt-3 pl-5">
-              <p>&lt; Back to catalog</p>
+            <div className="col-sm-3 pt-3 pl-5">
+              <p onClick={ this.handleClickBackToCatalog }>&lt; Back to catalog</p>
             </div>
             <div className="row no-gutters p-2 pt-3 d-flex justify-content-around">
               <img className="col-sm-5 mr-2" src={this.state.product.image} alt="" />
