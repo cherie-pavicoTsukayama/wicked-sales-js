@@ -10,8 +10,8 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'details',
-        params: { productId: 1 }
+        name: 'catalog',
+        params: {}
       },
       cart: []
     };
