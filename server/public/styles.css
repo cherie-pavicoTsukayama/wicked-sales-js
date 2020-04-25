@@ -15,3 +15,7 @@ img {
 .item-card {
   width: 32%;
 }
+
+.pointer:hover {
+  cursor: pointer;
+}

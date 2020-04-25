@@ -7,6 +7,7 @@ export default class ProductDetails extends React.Component {
       product: null
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
+    this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
   }
 
   convertPrice(rawPrice) {
@@ -27,6 +28,10 @@ export default class ProductDetails extends React.Component {
     this.props.setView('catalog', { productId: {} });
   }
 
+  handleClickAddToCart() {
+    this.props.addToCart(this.state.product);
+  }
+
   componentDidMount() {
     fetch(`api/products/${this.props.productId.productId}`)
       .then(res => res.json())
@@ -42,7 +47,7 @@ export default class ProductDetails extends React.Component {
         <div className="container mt-3 mb-5">
           <div className="card d-flex flex-nowrap">
             <div className="col-sm-3 pt-3 pl-5">
-              <p onClick={ this.handleClickBackToCatalog }>&lt; Back to catalog</p>
+              <p className="pointer" onClick={ this.handleClickBackToCatalog }>&lt; Back to catalog</p>
             </div>
             <div className="row no-gutters p-2 pt-3 d-flex justify-content-around">
               <img className="col-sm-5 mr-2" src={this.state.product.image} alt="" />
@@ -50,6 +55,7 @@ export default class ProductDetails extends React.Component {
                 <h1>{this.state.product.name}</h1>
                 <h2 className="text-muted">{ this.convertPrice(this.state.product.price) }</h2>
                 <p> {this.state.product.shortDescription}</p>
+                <button onClick={ this.handleClickAddToCart } className="btn btn-primary" type="button">Add to Cart</button>
               </div>
             </div>
             <div className="pr-5 pl-5 pb-3 pt-3">
