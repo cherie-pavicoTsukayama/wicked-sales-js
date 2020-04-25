@@ -80,8 +80,8 @@ app.get('/api/cart', (req, res, next) => {
 });
 
 app.post('/api/cart', (req, res, next) => {
-  const { productId } = req.body;
-  const productIdNum = parseInt(productId);
+  const { product } = req.body;
+  const productIdNum = parseInt(product);
   if (isNaN(productIdNum)) {
     return res.status(400).json({
       error: 'Product Id must be a valid number'
@@ -97,7 +97,7 @@ app.post('/api/cart', (req, res, next) => {
   db.query(sql, value)
     .then(result => {
       if (result.rows.length === 0) {
-        throw new ClientError(`Product Id ${productId} does not exist`, 400);
+        throw new ClientError(`Product Id ${product} does not exist`, 400);
       }
       if ((typeof req.session.cartId) !== 'number') {
         const sql = `
@@ -148,6 +148,14 @@ app.post('/api/cart', (req, res, next) => {
         });
     })
     .catch(err => next(err));
+});
+
+app.post('/api/orders', (req, res, next) => {
+  if (typeof req.session.cartId !== 'number') {
+    res.status(400).json({
+      error: 'There is no cart in session'
+    });
+  }
 });
 
 app.use('/api', (req, res, next) => {
