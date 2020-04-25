@@ -156,6 +156,14 @@ app.post('/api/orders', (req, res, next) => {
       error: 'There is no cart in session'
     });
   }
+
+  const { name, creditCard, shippingAddress } = req.body;
+  if (!name || !creditCard || !shippingAddress) {
+    res.status(400).json({
+      error: 'Please enter Name, Credit Card and Shiping Address'
+    });
+  }
+
 });
 
 app.use('/api', (req, res, next) => {
