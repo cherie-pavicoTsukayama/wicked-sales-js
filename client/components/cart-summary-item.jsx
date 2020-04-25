@@ -13,13 +13,16 @@ export default function CartSummaryItem(item) {
   }
 
   return (
-    <div className="row no-gutters p-2 pt-3 d-flex justify-content-around shadow">
-      <img className="col-sm-5 mr-2" src={item.product.image} alt="" />
-      <div className="col-sm-6">
-        <h1>{item.product.name}</h1>
-        <h2 className="text-muted">{convertedPrice}</h2>
-        <p> {item.product.shortDescription}aveaveaea</p>
+    <div className="card mb-5">
+      <div className="row no-gutters p-2 pt-3  d-flex justify-content-around shadow-sm align-items-center">
+        <img className="col-sm-5 mr-2" src={item.product.image} alt="" />
+        <div className="col-sm-6">
+          <h1>{item.product.name}</h1>
+          <h2 className="text-muted">{convertedPrice}</h2>
+          <p> {item.product.shortDescription}aveaveaea</p>
+        </div>
       </div>
     </div>
+
   );
 }
