@@ -29,17 +29,23 @@ export default class CartSummary extends React.Component {
 
   getTotalPrice() {
     const items = this.props.items;
-    let total = 0;
-    for (let i = 0; i < items.length; i++) {
-      total += items[i].price;
-    }
-    const stringTotal = total.toString();
     let convertedTotal = '$';
-    for (let i = 0; i < (stringTotal.length - 2); i++) {
-      convertedTotal += stringTotal[i];
+    if (items.length === 0) {
+      convertedTotal = '$0.00';
+      return convertedTotal;
+    } else {
+      let total = 0;
+      for (let i = 0; i < items.length; i++) {
+        total += items[i].price;
+      }
+      const stringTotal = total.toString();
+
+      for (let i = 0; i < (stringTotal.length - 2); i++) {
+        convertedTotal += stringTotal[i];
+      }
+      convertedTotal += ('.' + stringTotal.slice(-2));
+      return convertedTotal;
     }
-    convertedTotal += ('.' + stringTotal.slice(-2));
-    return convertedTotal;
   }
 
   render() {
