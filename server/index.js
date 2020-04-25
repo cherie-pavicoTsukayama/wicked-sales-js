@@ -87,9 +87,24 @@ app.post('/api/cart/:productId', (req, res, next) => {
     .then(result => {
       if (result.rows.length === 0) {
         next(new ClientError(`Product Id ${productId} does not exist`, 400));
+      } else {
+        const sql = `
+          insert into "carts" ("cartId", "createdAt")
+          values (default, default)
+          returning "cartId"
+        `;
+        return db.query(sql)
+          .then(insertResult => {
+            return {
+              cartId: insertResult.rows[0].cartId,
+              price: result.rows[0].price
+            };
+          });
       }
     })
-    .then()
+    .then(data => {
+      req.session.cartId = data.cardId;
+    })
     .then()
     .catch(err => next(err));
 });
