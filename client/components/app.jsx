@@ -10,9 +10,10 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
-        params: {}
-      }
+        name: 'details',
+        params: { productId: 1 }
+      },
+      cart: []
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
