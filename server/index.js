@@ -159,7 +159,7 @@ app.post('/api/orders', (req, res, next) => {
 
   const { name, creditCard, shippingAddress } = req.body;
   if (!name || !creditCard || !shippingAddress) {
-    res.status(400).json({
+    return res.status(400).json({
       error: 'Please enter Name, Credit Card and Shiping Address'
     });
   }
