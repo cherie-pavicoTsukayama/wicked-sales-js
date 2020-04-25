@@ -152,7 +152,7 @@ app.post('/api/cart', (req, res, next) => {
 
 app.post('/api/orders', (req, res, next) => {
   if (typeof req.session.cartId !== 'number') {
-    res.status(400).json({
+    return res.status(400).json({
       error: 'There is no cart in session'
     });
   }
