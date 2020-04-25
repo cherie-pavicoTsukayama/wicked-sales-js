@@ -76,6 +76,22 @@ app.post('/api/cart/:productId', (req, res, next) => {
       error: 'Product Id must be a valid number'
     });
   }
+
+  const sql = `
+    select "price"
+      from "products"
+     where "productId" = $1
+  `;
+  const value = [productIdNum];
+  db.query(sql, value)
+    .then(result => {
+      if (result.rows.length === 0) {
+        next(new ClientError(`Product Id ${productId} does not exist`, 400));
+      }
+    })
+    .then()
+    .then()
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
