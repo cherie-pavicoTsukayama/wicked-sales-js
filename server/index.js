@@ -103,7 +103,7 @@ app.post('/api/cart/:productId', (req, res, next) => {
       }
     })
     .then(data => {
-      req.session.cartId = data.cardId;
+      req.session.cartId = data.cartId;
     })
     .then()
     .catch(err => next(err));
