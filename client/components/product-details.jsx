@@ -50,6 +50,7 @@ export default class ProductDetails extends React.Component {
                 <h1>{this.state.product.name}</h1>
                 <h2 className="text-muted">{ this.convertPrice(this.state.product.price) }</h2>
                 <p> {this.state.product.shortDescription}</p>
+                <button className="btn btn-primary">Add to Cart</button>
               </div>
             </div>
             <div className="pr-5 pl-5 pb-3 pt-3">
