@@ -87,7 +87,8 @@ app.post('/api/cart/:productId', (req, res, next) => {
     .then(result => {
       if (result.rows.length === 0) {
         next(new ClientError(`Product Id ${productId} does not exist`, 400));
-      } else {
+      }
+      if (!req.session.cartId) {
         const sql = `
           insert into "carts" ("cartId", "createdAt")
           values (default, default)
@@ -100,12 +101,41 @@ app.post('/api/cart/:productId', (req, res, next) => {
               price: result.rows[0].price
             };
           });
+      } else {
+        return {
+          cartId: req.session.cartId,
+          price: result.rows[0].price
+        };
       }
     })
     .then(data => {
       req.session.cartId = data.cartId;
+      const sql = `
+        insert into "cartItems" ("cartId", "productId", "price")
+        values ($1, $2, $3)
+        returning "cartItemId"
+      `;
+      const values = [data.cartId, productIdNum, data.price];
+      return db.query(sql, values);
     })
-    .then()
+    .then(cartItemId => {
+      const sql = `
+        select "c"."cartItemId",
+               "c"."price",
+               "p"."productId",
+               "p"."image",
+               "p"."name",
+               "p"."shortDescription"
+          from "cartItems" as "c"
+          join "products" as "p" using ("productId")
+         where "c"."cartItemId" = $1
+      `;
+      const value = [cartItemId.rows[0].cartItemId];
+      return db.query(sql, value)
+        .then(result => {
+          res.status(200).json(result.rows);
+        });
+    })
     .catch(err => next(err));
 });
 
