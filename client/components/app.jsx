@@ -36,7 +36,14 @@ export default class App extends React.Component {
     }
   }
 
+  getCartItems() {
+    fetch('/api/cart')
+      .then(res => res.json())
+      .catch(err => console.error(err));
+  }
+
   componentDidMount() {
+    this.getCartItems();
     fetch('/api/health-check')
       .then(res => res.json())
       .then(data => this.setState({ message: data.message || data.error }))
@@ -49,7 +56,7 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <h1>{this.state.message}</h1>,
     <div>
-      <Header />
+      <Header cartItemCount={this.state.cart.length}/>
       <div>
         { this.display() }
       </div>
