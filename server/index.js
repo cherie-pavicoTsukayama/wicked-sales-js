@@ -68,6 +68,16 @@ app.get('/api/cart', (req, res, next) => {
     .catch(err => console.error(err));
 });
 
+app.post('/api/cart/:productId', (req, res, next) => {
+  const { productId } = req.params;
+  const productIdNum = parseInt(productId);
+  if (isNaN(productIdNum)) {
+    return res.status(400).json({
+      error: 'Product Id must be a valid number'
+    });
+  }
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
