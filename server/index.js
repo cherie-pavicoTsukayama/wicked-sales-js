@@ -97,9 +97,9 @@ app.post('/api/cart', (req, res, next) => {
   db.query(sql, value)
     .then(result => {
       if (result.rows.length === 0) {
-        next(new ClientError(`Product Id ${productId} does not exist`, 400));
+        throw new ClientError(`Product Id ${productId} does not exist`, 400);
       }
-      if (!req.session.cartId === true) {
+      if ((typeof req.session.cartId) !== 'number') {
         const sql = `
           insert into "carts" ("cartId", "createdAt")
           values (default, default)
