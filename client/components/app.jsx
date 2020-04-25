@@ -11,7 +11,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'cart',
+        name: 'catalog',
         params: {}
       },
       cart: []
@@ -40,7 +40,7 @@ export default class App extends React.Component {
       return <ProductList setView={this.setView} />;
     }
     if (view === 'cart') {
-      return <CartSummary items={this.state.cart} />;
+      return <CartSummary items={this.state.cart} setView={this.setView} />;
     }
 
   }
@@ -85,7 +85,7 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <h1>{this.state.message}</h1>,
     <div>
-      <Header cartItemCount={this.state.cart.length}/>
+      <Header cartItemCount={this.state.cart.length} setView={this.setView}/>
       <div>
         { this.display() }
       </div>

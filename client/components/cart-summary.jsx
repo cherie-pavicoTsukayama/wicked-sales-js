@@ -5,6 +5,11 @@ export default class CartSummary extends React.Component {
   constructor(props) {
     super(props);
     this.createSummaryCards = this.createSummaryCards.bind(this);
+    this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
+  }
+
+  handleClickBackToCatalog() {
+    this.props.setView('catalog', {});
   }
 
   createSummaryCards() {
