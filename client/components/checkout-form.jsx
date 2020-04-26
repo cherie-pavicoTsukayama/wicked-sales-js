@@ -34,7 +34,7 @@ export default class CheckoutForm extends React.Component {
     });
   }
 
-  handleSubmitPlaceOrder() {
+  handleSubmitPlaceOrder(event) {
     event.preventDefault();
     this.props.placeOrder(this.state);
     this.setState({
@@ -42,7 +42,7 @@ export default class CheckoutForm extends React.Component {
       creditCard: '',
       shippingAddress: ''
     });
-    document.getElementById('checkoutForm').reset();
+    event.target.reset();
     this.props.setView('catalog', {});
   }
 
