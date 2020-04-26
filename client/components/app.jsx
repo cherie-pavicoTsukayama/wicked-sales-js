@@ -12,7 +12,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'checkout',
+        name: 'cart',
         params: {}
       },
       cart: []
@@ -77,21 +77,20 @@ export default class App extends React.Component {
   }
 
   placeOrder(details) {
-    // console.log('clicked');
-    // const post = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify(details)
-    // };
+    const post = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(details)
+    };
 
-    // fetch('/api/orders', post)
-    //   .then(() => this.setState({
-    //     cart: [],
-    //     view: { name: 'catalog', params: {} }
-    //   }))
-    //   .catch(err => console.error(err));
+    fetch('/api/orders', post)
+      .then(() => this.setState({
+        cart: [],
+        view: { name: 'catalog', params: {} }
+      }))
+      .catch(err => console.error(err));
   }
 
   componentDidMount() {

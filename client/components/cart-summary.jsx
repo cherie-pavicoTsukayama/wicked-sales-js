@@ -6,6 +6,8 @@ export default class CartSummary extends React.Component {
     super(props);
     this.createSummaryCards = this.createSummaryCards.bind(this);
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
+    this.makeCheckoutButton = this.makeCheckoutButton.bind(this);
+    this.handleClickCheckOutButton = this.handleClickCheckOutButton.bind(this);
   }
 
   handleClickBackToCatalog() {
@@ -48,6 +50,18 @@ export default class CartSummary extends React.Component {
     }
   }
 
+  makeCheckoutButton() {
+    if (this.props.items.length !== 0) {
+      return (
+        <button type="button" className="btn btn-primary" onClick={this.handleClickCheckOutButton}>Checkout</button>
+      );
+    }
+  }
+
+  handleClickCheckOutButton() {
+    this.props.setView('checkout', {});
+  }
+
   render() {
     return (
       <div className="container">
@@ -58,8 +72,9 @@ export default class CartSummary extends React.Component {
         <div className="d-flex flex-wrap justify-content-between mt-5">
           {this.createSummaryCards()}
         </div>
-        <div>
-          <h1 className="mb-5">Item Total:  {this.getTotalPrice()}</h1>
+        <div className="d-flex flex-nowrap justify-content-between">
+          <h3 className="mb-5">Item Total:  {this.getTotalPrice()}</h3>
+          <div>{ this.makeCheckoutButton() }</div>
         </div>
       </div>
 
