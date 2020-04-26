@@ -45,7 +45,7 @@ export default class App extends React.Component {
       return <CartSummary items={this.state.cart} setView={this.setView} />;
     }
     if (view === 'checkout') {
-      return <CheckoutForm placeOrder={this.placeOrder}/>;
+      return <CheckoutForm placeOrder={this.placeOrder} setView={this.setView}/>;
     }
 
   }
@@ -77,20 +77,21 @@ export default class App extends React.Component {
   }
 
   placeOrder(details) {
-    const post = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(details)
-    };
+    // console.log('clicked');
+    // const post = {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(details)
+    // };
 
-    fetch('/api/orders', post)
-      .then(() => this.setState({
-        cart: [],
-        view: { name: 'catalog', params: {} }
-      }))
-      .catch(err => console.error(err));
+    // fetch('/api/orders', post)
+    //   .then(() => this.setState({
+    //     cart: [],
+    //     view: { name: 'catalog', params: {} }
+    //   }))
+    //   .catch(err => console.error(err));
   }
 
   componentDidMount() {
