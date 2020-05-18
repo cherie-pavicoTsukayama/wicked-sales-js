@@ -1,2 +1,25 @@
 # wicked-sales-js
+> - Maintained by: `cherie-pavicoTsukayama`
+
+## Description
 A full stack Node.js and React shopping cart app.
+
+## Technologies Used
+  - HTML
+  - CSS
+  - JavaScript (ES6)
+  - React.js
+  - Node.js
+  - Express
+  - PostgreSQL
+  - express-session
+
+  ## Features
+ 1. User can view products for sale.
+ 1. User can view details of a product.
+ 1. User can add product to shoping cart.
+ 1. User can view cart summary.
+ 1. User can place an order.
+
+ ## Preview
+ <img src"server/public/images/WickedSales.gif">
