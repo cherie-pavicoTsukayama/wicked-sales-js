@@ -2,6 +2,8 @@ import React from 'react';
 import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
+import CartSummary from './cart-summary';
+import CheckoutForm from './checkout-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,6 +21,7 @@ export default class App extends React.Component {
     this.display = this.display.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
   }
 
   setView(name, productId) {
@@ -31,11 +34,20 @@ export default class App extends React.Component {
   }
 
   display() {
-    if (this.state.view.name === 'details') {
+    const view = this.state.view.name;
+    if (view === 'details') {
       return <ProductDetails productId={this.state.view.params} setView={ this.setView } addToCart={ this.addToCart }/>;
-    } else {
+    }
+    if (view === 'catalog') {
       return <ProductList setView={this.setView} />;
     }
+    if (view === 'cart') {
+      return <CartSummary items={this.state.cart} setView={this.setView} />;
+    }
+    if (view === 'checkout') {
+      return <CheckoutForm placeOrder={this.placeOrder} setView={this.setView}/>;
+    }
+
   }
 
   getCartItems() {
@@ -64,6 +76,23 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  placeOrder(details) {
+    const post = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(details)
+    };
+
+    fetch('/api/orders', post)
+      .then(() => this.setState({
+        cart: [],
+        view: { name: 'catalog', params: {} }
+      }))
+      .catch(err => console.error(err));
+  }
+
   componentDidMount() {
     this.getCartItems();
     fetch('/api/health-check')
@@ -78,7 +107,7 @@ export default class App extends React.Component {
       ? <h1>Testing connections...</h1>
       : <h1>{this.state.message}</h1>,
     <div>
-      <Header cartItemCount={this.state.cart.length}/>
+      <Header cartItemCount={this.state.cart.length} setView={this.setView}/>
       <div>
         { this.display() }
       </div>
