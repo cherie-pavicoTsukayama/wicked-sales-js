@@ -22,7 +22,7 @@ A full stack Node.js and React shopping cart app.
  1. User can place an order.
 
  ## Preview
- <img src"server/public/images/WickedSales.gif">
+ <img src="server/public/images/WickedSales.gif">
 
 ## Getting Started
 1. Install all dependencies `npm install`.
