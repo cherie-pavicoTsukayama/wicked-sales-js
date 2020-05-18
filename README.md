@@ -23,3 +23,9 @@ A full stack Node.js and React shopping cart app.
 
  ## Preview
  <img src"server/public/images/WickedSales.gif">
+
+## Getting Started
+1. Install all dependencies `npm install`.
+1. Run `npm run build` script before viewing on `localhost:3001`
+1. Run `npm db:import` to import the database.
+1. Build out each feature above.
