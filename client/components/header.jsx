@@ -11,7 +11,7 @@ export default function Header(props) {
       <header className="container d-flex flex-nowrap justify-content-between">
         <div>
           <h6 className="m-0">
-            <i className="fas fa-dollar-sign"> </i> Wicked Sales</h6>
+            <i className="fas fa-tools pr-2"></i>Technicali</h6>
         </div>
         <div>
           <h6 className="m-0 pointer" onClick={handleClick}> {props.cartItemCount} Items<i className="fas fa-shopping-cart fa-lg mr-3 ml-2"></i> </h6>
