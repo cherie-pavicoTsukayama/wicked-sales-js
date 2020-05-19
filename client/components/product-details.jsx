@@ -46,7 +46,7 @@ export default class ProductDetails extends React.Component {
       return (
         <div className="container mt-3 mb-5">
           <div className="card d-flex flex-nowrap">
-            <div className="col-sm-3 pt-3 pl-5">
+            <div className="col-sm-5 pt-3 pl-3 spacing">
               <p className="pointer" onClick={ this.handleClickBackToCatalog }>&lt; Back to catalog</p>
             </div>
             <div className="row no-gutters p-2 pt-3 d-flex justify-content-around">
