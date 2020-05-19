@@ -13,7 +13,7 @@ export default function ProductListItem(props) {
   }
 
   return (
-    <div key={props.product.productId} className="card item-card shadow-sm mb-3 pointer" >
+    <div key={props.product.productId} className="card item-card shadow-sm mb-3 pb-3 pointer" >
       <img className="card-img-top pointer" src={props.product.image} alt="" id={props.product.productId} onClick={props.onClick}/>
       <div className="card-body pointer" id={props.product.productId} onClick={props.onClick}>
         <h5 className="card-title pointer" id={props.product.productId} onClick={props.onClick}>{props.product.name} </h5>

@@ -35,7 +35,7 @@ export default class ProductList extends React.Component {
 
   render() {
     return (
-      <div className="container d-flex flex-wrap justify-content-between mt-5 mb-5">
+      <div className="container d-flex flex-wrap justify-content-between mt-5 mb-5 ">
         { this.createProductCards() }
       </div>
 
