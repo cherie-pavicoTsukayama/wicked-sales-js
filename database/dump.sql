@@ -269,6 +269,18 @@ COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
 50	26	2	2595
 51	27	1	2999
 52	27	2	2595
+53	28	2	2595
+54	28	2	2595
+55	27	2	2595
+56	27	2	2595
+57	29	1	2999
+58	30	1	2999
+59	30	2	2595
+60	30	1	2999
+61	30	5	9900
+62	30	1	2999
+63	30	2	2595
+64	31	2	24999
 \.
 
 
@@ -285,6 +297,10 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 25	2020-04-25 19:14:36.329151+00
 26	2020-04-25 21:20:33.536048+00
 27	2020-04-25 21:25:58.916746+00
+28	2020-04-25 21:55:30.523285+00
+29	2020-04-26 16:32:34.482497+00
+30	2020-05-18 20:39:20.567111+00
+31	2020-05-19 20:45:44.589081+00
 \.
 
 
@@ -293,6 +309,14 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 --
 
 COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", "createdAt") FROM stdin;
+2	28	cherie	1234	1234 Abc St	2020-04-25 22:15:35.562236+00
+3	28	cherie	1234	1234 Abc St	2020-04-25 22:23:32.91319+00
+4	28	cherie	1234	1234 Abc St	2020-04-25 22:24:03.562039+00
+5	28	cherie	1234	1234 Abc St	2020-04-25 22:28:14.14234+00
+6	27	Cherie	1234	1234	2020-04-26 01:03:56.082385+00
+7	27	1234	1234	1234	2020-04-26 01:06:23.964568+00
+8	27	Harry	1234 1234 1234 1234	4 Privet Drive, LIttle Whinging	2020-04-26 01:11:50.609808+00
+9	29	Harry 	12341234123441234	1234 St.	2020-04-26 16:32:56.079355+00
 \.
 
 
@@ -301,12 +325,12 @@ COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", 
 --
 
 COPY public.products ("productId", name, price, image, "shortDescription", "longDescription") FROM stdin;
-1	Shake Weight	2999	/images/shake-weight.jpg	Dynamic Inertia technology ignites muscles in arms, shoulders, and chest.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-2	ShamWow	2595	/images/shamwow.jpg	It's like a chamois, towel, and sponge, all in one! Soaks up to 10x it's weight in any liquid!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-3	Snuggie	2900	/images/snuggie.jpg	Super-Soft Fleece with pockets! One Size fits all Adults! Keeps you Warm & Your Hands-Free!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-4	Wax Vac	999	/images/wax-vac.jpg	Gentle way to remove ear wax. Safe and hygienic. Reduces the risk of painful infections.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-5	Ostrich Pillow	9900	/images/ostrich-pillow.jpg	Create your own snugly space in the world and feel-good anywhere with the ultimate cocoon pillow.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-6	Tater Mitts	830	/images/tater-mitts.jpg	8 Seconds is all you need with Tater Mitts. Quickly and easily prepare all your favorite potato dishes with Tater Mitts.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
+2	4X4 X-treme Off Roader	24999	/images/Lego-4X4-X-treme-Off-Roader.jpeg	Sturdy app-controlled LEGO® truck with high-rise independent suspension, large wheels and chunky tires.	Are you ready to take your LEGO® play experience to another level? The LEGO Technic™ 4x4 X-treme Off-Roader is powered by an advanced Smart Hub with 3 motors and controlled via the intuitive LEGO TECHNIC CONTROL+ app. The sophisticated app technology enables super-precise movement and functionality, while delivering endless authentic digital play combinations with authentic sound effects. Users can choose from different control screens to drive forward, reverse, steer, accelerate, brake and traverse obstacles. You can also get real-time feedback, such as a speed and tilt log or test out your skills in the app’s challenges and achievement section. This sturdy 4x4 app-controlled truck comes with high-rise independent suspension, large wheels with chunky tires and a fresh color scheme with intricate sticker detailing. Its complex gear mechanisms and technologies introduce LEGO builders to advanced elements of engineering, while improving reaction times, cognitive thinking and creative problem-solving skills.
+6	LEGO Power Functis Servo Motor	2499	/images/LEGO-Power-Functis-Servo-Motor-on88004-Technic.jpeg	Servo Motor features 90-degree rotation clockwise or counterclockwise	Drive your LEGO® Technic creations to a whole new level with the LEGO Power Functions motor made for the ultimate 4-wheel steering experience. Power through the turns like never before with ultra-realistic steering.  Steer your Technic vehicle left, right or straight ahead with any one of 15 steering axle positions. Rotates 90 degrees clockwise or counterclockwise. It’s easy to add 4-wheel steering to your models with the Servo Motor’s front and back power outputs!
+4	Liebherr R-9800 Excavator	49999	/images/Lego-Liebherr-R-9800-Excavator.jpeg	This excavator model features the LEGO® TECHNIC™ CONTROL+ app for a more immersive and realistic play experience and hours of fun.	Get ready for a colossal LEGO® build and play experience with the 4,108-piece LEGO Technic™ Liebherr R 9800 Excavator. Developed in partnership with Liebherr, this replica model is operated via the intuitive LEGO TECHNIC CONTROL+ app and powered by 2 advanced Smart Hubs with 7 motors. The sophisticated app technology enables super-precise movement and amazing functionality, while delivering endless authentic digital play combinations via 4 different control screens with cool graphics. The Multi-function control screen enables users to drive the machine in all directions, rotate the superstructure, extend and raise the boom, open and tilt the bucket, play realistic sound effects and get real-time feedback, such as boom position, power usage and drive distance. With the One-touch screen, users can use drag patterns to control the boom, arm and bucket, while the Custom-built movements screen enables them to choose pre-set commands or record the model’s actions to create complex sequences of movements. And, with the Challenges & achievements screen, users can complete challenges to unlock reward badges.
+5	LEGO Power Functions XL Motor	999	/images/LEGO-Power-Functions-XL-Motor-8882.jpeg	Use the "XL" Motor to animate larger builds.	Add an extra XL-Motor to your LEGO® creations! This super-strong motor will give plenty of power to your models, whether it’s spinning a wheel or turning a system of gears.
+3	Remote Controlled Stunt Racer	9999	/images/Lego-Remote-Controlled-Stunt-Racer.jpeg	This 2-in-1 motorized toy rebuilds into a Remote-Controlled Racer.	Pull high-speed wheelies, spins and turns, and traverse rough terrain with this fully motorized LEGO® Technic™ 42095 Remote-Controlled Stunt Racer. This tough model features large ground-gripping tracks with large rear sprockets for optimal acceleration, plus a modern design with a fresh yellow and blue color scheme and decorative stickers. Drive forward, backward, left or right and make 360° turns. Rebuild this 2-in-1 remote-controlled tracked vehicle to create a Remote-Controlled Racer for a double build-and-play experience.
+1	Bugatti-Chiron	34999	/images/Lego-Bugatti-Chiron.jpeg	This LEGO® Technic™ model is designed to provide an immersive and rewarding building experience.	Explore engineering excellence with the LEGO® Technic™ 42083 Bugatti Chiron advanced building set. This exclusive model has been developed in partnership with Bugatti Automobiles S.A.S to capture the essence of the quintessential super sports car, and comes with gleaming aerodynamic bodywork, logoed spoked rims with low-profile tires, and detailed brake discs. The accessible cockpit features a Technic 8-speed gearbox with movable paddle gearshift and a steering wheel bearing the Bugatti emblem. Insert the top speed key and you can switch the active rear wing from handling to top speed position. The rear lid affords a glimpse of the detailed W16 engine with moving pistons, while beneath the hood you/’ll discover a unique serial number and a compact storage compartment containing a stylish Bugatti overnight bag. This 1:8 scale model comes with a classic Bugatti duo-tone blue color scheme that reflects the brand’s signature color, and a set of stickers for additional detailing. The set is delivered in luxurious box packaging and includes a color collector’s booklet with comprehensive building instructions.
 \.
 
 
@@ -314,21 +338,21 @@ COPY public.products ("productId", name, price, image, "shortDescription", "long
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 52, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 64, true);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 27, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 31, true);
 
 
 --
 -- Name: orders_orderId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
+SELECT pg_catalog.setval('public."orders_orderId_seq"', 9, true);
 
 
 --
