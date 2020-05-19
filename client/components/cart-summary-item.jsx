@@ -23,6 +23,5 @@ export default function CartSummaryItem(item) {
         </div>
       </div>
     </div>
-
   );
 }
