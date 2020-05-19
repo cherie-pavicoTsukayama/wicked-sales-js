@@ -4,6 +4,9 @@
 ## Description
 A full stack Node.js and React shopping cart app.
 
+## Live Demo
+https://wicked-sales.cheriepavico.com/
+
 ## Technologies Used
   - HTML
   - CSS
