@@ -36,14 +36,11 @@ export default class CheckoutForm extends React.Component {
 
   handleSubmitPlaceOrder(event) {
     event.preventDefault();
-    this.props.placeOrder(this.state);
-    this.setState({
-      name: '',
-      creditCard: '',
-      shippingAddress: ''
-    });
-    event.target.reset();
-    this.props.setView('catalog', {});
+    const { name, creditCard, shippingAddress } = this.state;
+    if (name !== '' && creditCard !== '' && shippingAddress !== '') {
+      this.props.placeOrder(this.state);
+      this.props.setView('catalog', {});
+    }
   }
 
   handleClickBackToCatalog() {
@@ -57,25 +54,41 @@ export default class CheckoutForm extends React.Component {
         <h1>Checkout</h1>
         <h3 className="text-muted mb-3">Order Total: $0.00</h3>
         <div>
-          <form action="submit" id="checkoutForm" >
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input type="text" className="form-control" id="name" onChange={ this.handleChangeName }/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="credit-card">Credit Card</label>
-              <input type="text" className="form-control" id="credit-card" onChange={ this.handleChangeCreditCard }/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="shipping-address">Shipping Address</label>
-              <textarea className="form-control" name="shipping-address" id="shipping-address" cols="30" rows="5" onChange={ this.handleChangeShippingAddress }></textarea>
+          <form id="checkoutForm" onSubmit={this.handleSubmitPlaceOrder} >
+            <label htmlFor="name">Name</label>
+            <input
+              required
+              type="text"
+              className="form-control mb-4"
+              id="name"
+              onChange={this.handleChangeName} />
+            <label htmlFor="credit-card">Credit Card</label>
+            <input
+              required
+              type="text"
+              className="form-control mb-4"
+              id="credit-card"
+              onChange={this.handleChangeCreditCard} />
+            <label htmlFor="shipping-address">Shipping Address</label>
+            <textarea
+              required
+              className="form-control mb-4"
+              name="shipping-address"
+              id="shipping-address"
+              cols="30"
+              rows="5"
+              onChange={ this.handleChangeShippingAddress }></textarea>
+            <div className="d-flex flex-nowrap justify-content-between mt-4 align-items-center">
+              <p className="m-0 pointer" onClick={this.handleClickBackToCatalog}>&lt; Continue Shopping</p>
+              <button
+                type="submit"
+                className="btn btn-primary">
+                Place Order
+              </button>
             </div>
           </form>
         </div>
-        <div className="d-flex flex-nowrap justify-content-between mt-4 align-items-center">
-          <p className="m-0 pointer" onClick={ this.handleClickBackToCatalog }>&lt; Continue Shopping</p>
-          <button type="submit" onClick={ this.handleSubmitPlaceOrder } className="btn btn-primary">Place Order</button>
-        </div>
+
       </div>
     );
   }
