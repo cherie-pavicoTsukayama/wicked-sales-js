@@ -50,7 +50,7 @@ export default class CheckoutForm extends React.Component {
   render() {
 
     return (
-      <div className="container card col-10 col-md-6 mt-5 p-5">
+      <div className="container card col-10 col-md-6 mt-5 mb-5 p-3">
         <h1>Checkout</h1>
         <h3 className="text-muted mb-3">Order Total: $0.00</h3>
         <div>
@@ -79,7 +79,7 @@ export default class CheckoutForm extends React.Component {
               rows="5"
               onChange={ this.handleChangeShippingAddress }></textarea>
             <div className="d-flex flex-nowrap justify-content-between mt-4 align-items-center">
-              <p className="m-0 pointer" onClick={this.handleClickBackToCatalog}>&lt; Continue Shopping</p>
+              <p className="m-0 pointer smaller-text" onClick={this.handleClickBackToCatalog}>&lt; Continue Shopping</p>
               <button
                 type="submit"
                 className="btn btn-primary">

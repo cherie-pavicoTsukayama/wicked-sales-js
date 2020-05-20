@@ -38,6 +38,9 @@ img {
   .item-card {
     width: 100%;
  }
+ .smaller-text {
+   font-size: .8rem;
+ }
 }
 
 @media only screen
