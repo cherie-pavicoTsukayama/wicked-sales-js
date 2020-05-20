@@ -16,6 +16,27 @@ export default class CheckoutForm extends React.Component {
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
   }
 
+  getTotalPrice() {
+    const items = this.props.items;
+    let convertedTotal = '$';
+    if (items.length === 0) {
+      convertedTotal = '$0.00';
+      return convertedTotal;
+    } else {
+      let total = 0;
+      for (let i = 0; i < items.length; i++) {
+        total += items[i].price;
+      }
+      const stringTotal = total.toString();
+
+      for (let i = 0; i < (stringTotal.length - 2); i++) {
+        convertedTotal += stringTotal[i];
+      }
+      convertedTotal += ('.' + stringTotal.slice(-2));
+      return convertedTotal;
+    }
+  }
+
   handleChangeName() {
     this.setState({
       name: event.target.value
@@ -52,7 +73,7 @@ export default class CheckoutForm extends React.Component {
     return (
       <div className="container card col-10 col-md-6 mt-5 mb-5 p-3">
         <h1>Checkout</h1>
-        <h3 className="text-muted mb-3">Order Total: $0.00</h3>
+        <h3 className="text-muted mb-3">Order Total: {this.getTotalPrice()}</h3>
         <div>
           <form id="checkoutForm" onSubmit={this.handleSubmitPlaceOrder} >
             <label htmlFor="name">Name</label>
