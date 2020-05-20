@@ -18,6 +18,8 @@ export default class ProductDetails extends React.Component {
         convertedPrice += (price[i] + '.');
         convertedPrice += price.slice(0, 2);
       }
+    } else if (price.length > 4) {
+      convertedPrice += (price.slice(0, -2) + '.' + price.slice(-2));
     } else {
       convertedPrice += (price.slice(0, 2) + '.' + price.slice(2, 4));
     }
