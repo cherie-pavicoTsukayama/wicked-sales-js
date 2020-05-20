@@ -19,7 +19,7 @@ https://wicked-sales.cheriepavico.com/
   - webpack
   - babel
   - Bootstrap 4
-  
+
   ## Features
  1. User can view products for sale.
  1. User can view details of a product.
@@ -28,7 +28,7 @@ https://wicked-sales.cheriepavico.com/
  1. User can place an order.
 
  ## Preview
- <img src="server/public/images/WickedSales.gif">
+ <img src="server/public/images/technicali.gif">
 
 ## Getting Started
 1. Install all dependencies `npm install`.
