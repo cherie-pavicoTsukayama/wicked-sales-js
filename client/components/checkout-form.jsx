@@ -50,7 +50,7 @@ export default class CheckoutForm extends React.Component {
   render() {
 
     return (
-      <div className="container card col-6 mt-5 p-5">
+      <div className="container card col-10 col-md-6 mt-5 p-5">
         <h1>Checkout</h1>
         <h3 className="text-muted mb-3">Order Total: $0.00</h3>
         <div>
