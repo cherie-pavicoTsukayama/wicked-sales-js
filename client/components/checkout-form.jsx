@@ -261,7 +261,7 @@ export default class CheckoutForm extends React.Component {
                       name="expMonth"
                       id="expMonth"
                       onChange={this.handleChangeExpirationMonth}>
-                      <option value=""> Year </option>
+                      <option value=""> Month </option>
                       <option value="01"> 01 </option>
                       <option value="02"> 02 </option>
                       <option value="03"> 03 </option>
@@ -283,6 +283,7 @@ export default class CheckoutForm extends React.Component {
                       name="expYear"
                       id="expYear"
                       onChange={this.handleChangeExpirationYear}>
+                      <option value=""> Year </option>
                       <option value="2020"> 2020 </option>
                       <option value="2021"> 2021 </option>
                       <option value="2022"> 2022</option>
