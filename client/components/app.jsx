@@ -15,13 +15,15 @@ export default class App extends React.Component {
         name: 'catalog',
         params: {}
       },
-      cart: []
+      cart: [],
+      hide: ''
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
   }
 
   setView(name, productId) {
@@ -33,13 +35,27 @@ export default class App extends React.Component {
     });
   }
 
+  handleCloseOpeningModal(event) {
+    event.preventDefault();
+    this.setState({
+      fadeOut: 'fade-out'
+    });
+    setTimeout(() => {
+      this.setState({
+        showModal: 'display-none'
+      });
+    }
+    , 1000);
+
+  }
+
   display() {
     const view = this.state.view.name;
     if (view === 'details') {
       return <ProductDetails productId={this.state.view.params} setView={ this.setView } addToCart={ this.addToCart }/>;
     }
     if (view === 'catalog') {
-      return <ProductList setView={this.setView} />;
+      return <ProductList setView={this.setView} showModal={this.state.showModal} fadeOut={this.state.fadeOut} closeModal={this.handleCloseOpeningModal}/>;
     }
     if (view === 'cart') {
       return <CartSummary items={this.state.cart} setView={this.setView} />;
@@ -94,6 +110,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    this.setState({ showModal: '' });
     this.getCartItems();
     fetch('/api/health-check')
       .then(res => res.json())
