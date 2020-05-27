@@ -10,7 +10,8 @@ export default class CheckoutForm extends React.Component {
       shippingAddress: '',
       city: '',
       state: '',
-      zipCode: ''
+      zipCode: '',
+      expirationMonth: ''
     };
     this.handleSubmitPlaceOrder = this.handleSubmitPlaceOrder.bind(this);
     this.handleChangeName = this.handleChangeName.bind(this);
@@ -20,6 +21,7 @@ export default class CheckoutForm extends React.Component {
     this.handleChangeCity = this.handleChangeCity.bind(this);
     this.handleChangeState = this.handleChangeState.bind(this);
     this.handleChangeZipCode = this.handleChangeZipCode.bind(this);
+    this.handleChangeExpirationMonth = this.handleChangeExpirationMonth.bind(this);
   }
 
   getTotalPrice() {
@@ -79,10 +81,24 @@ export default class CheckoutForm extends React.Component {
     });
   }
 
+  handleChangeExpirationMonth() {
+    this.setState({
+      expirationMonth: event.target.value
+    });
+  }
+
   handleSubmitPlaceOrder(event) {
     event.preventDefault();
-    const { name, creditCard, shippingAddress, city, state, zipCode } = this.state;
-    if (name !== '' && creditCard !== '' && shippingAddress !== '' && city !== '' && state !== '' && zipCode !== '') {
+    const {
+      name,
+      creditCard,
+      shippingAddress,
+      city,
+      state,
+      zipCode,
+      expirationMonth
+    } = this.state;
+    if (name !== '' && creditCard !== '' && shippingAddress !== '' && city !== '' && state !== '' && zipCode !== '' && expirationMonth !== '') {
       this.props.placeOrder(this.state);
       this.props.setView('catalog', {});
     }
@@ -127,12 +143,12 @@ export default class CheckoutForm extends React.Component {
                   onChange={this.handleChangeCity}></input>
               </div>
               <div className="col p-0 mx-3">
-                <label className="m-0" htmlFor="shipping-address">State</label>
+                <label className="m-0" htmlFor="state">State</label>
                 <select
                   required
                   className="custom-select mb-4"
-                  name="shipping-address"
-                  id="shipping-address"
+                  name="state"
+                  id="state"
                   onChange={this.handleChangeState}>
                   <option value=''>Select a state</option>
                   <option value="Alabama">Alabama</option>
@@ -188,21 +204,82 @@ export default class CheckoutForm extends React.Component {
                 <label className="m-0" htmlFor="zip">Zip Code</label>
                 <input
                   required
+                  maxLength="5"
+                  minLength="5"
                   className="form-control mb-4 col-"
-                  name="shipping-address"
-                  id="shipping-address"
+                  name="zip"
+                  id="zip"
                   onChange={this.handleChangeZipCode}></input>
               </div>
             </div>
+            <div className="mt-4">
+              <h5>Payment Method</h5>
+              <div className="d-flex flex-wrap align-items-center justify-content-between border rounded px-4 py-3 mb-3 col">
+                <div>
+                  <input required className="mr-2" name="cc-method" type="radio" />
+                  <label className="m-0" htmlFor="cc-method">Credit Card</label>
+                </div>
+                <div className="col-6 d-flex justify-content-center align-item-center">
+                  <img className="object-fit-width" src="./images/credit-cards.png" alt="" />
+                </div>
+              </div>
 
-            <label htmlFor="credit-card">Credit Card</label>
-            <input
-              required
-              type="text"
-              className="form-control mb-4"
-              id="credit-card"
-              onChange={this.handleChangeCreditCard} />
+              <label htmlFor="credit-card">Card Number</label>
+              <input
+                required
+                minLength="16"
+                maxLength="16"
+                type="text"
+                className="form-control mb-4"
+                id="credit-card"
+                onChange={this.handleChangeCreditCard} />
+              <div className="d-flex flex-wrap">
+                <div className="col-12 p-0">
+                  <label htmlFor="expMonth">Expiration Date</label>
+                </div>
+                <div className="col-3 pl-0">
+                  <select
+                    required
+                    className="custom-select mb-4"
+                    name="expMonth"
+                    id="expMonth"
+                    onChange={this.handleChangeExpirationMonth}>
+                    <option value=""> Year </option>
+                    <option value="01"> 01 </option>
+                    <option value="02"> 02 </option>
+                    <option value="03"> 03 </option>
+                    <option value="04"> 04 </option>
+                    <option value="05"> 05 </option>
+                    <option value="06"> 06 </option>
+                    <option value="07"> 07 </option>
+                    <option value="08"> 08 </option>
+                    <option value="09"> 09 </option>
+                    <option value="10"> 10 </option>
+                    <option value="11"> 11 </option>
+                    <option value="12"> 12 </option>
+                  </select>
+                </div>
+                <div className="col-4">
+                  <select
+                    required
+                    className="custom-select mb-4"
+                    name="expYear"
+                    id="expYear"
+                    onChange={this.handleChangeExpirationMonth}>
+                    <option value="2020"> 2020 </option>
+                    <option value="2021"> 2021 </option>
+                    <option value="2022"> 2022</option>
+                    <option value="2023"> 2023 </option>
+                    <option value="2024"> 2024 </option>
+                    <option value="2025"> 2025 </option>
+                    <option value="2026"> 2026 </option>
+                    <option value="2027"> 2027 </option>
+                    <option value="2028"> 2028 </option>
+                  </select>
+                </div>
 
+              </div>
+            </div>
             <div className="d-flex">
               <input required className="mt-1" type="checkbox" id="iAgreeCheckOut" name="iAgreeCheckOut" />
               <label className="m-0 ml-2" htmlFor="iAgreeCheckOut">
