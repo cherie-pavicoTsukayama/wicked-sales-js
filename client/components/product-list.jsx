@@ -5,12 +5,11 @@ export default class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
-      hide: ''
+      products: []
     };
     this.createProductCards = this.createProductCards.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
+    // this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
   }
 
   getProducts() {
@@ -31,24 +30,17 @@ export default class ProductList extends React.Component {
     this.props.setView('details', { productId: parseInt(event.target.id) });
   }
 
-  handleCloseOpeningModal(event) {
-    event.preventDefault();
-    this.setState({
-      hide: 'display-none'
-    });
-  }
-
   componentDidMount() {
     this.getProducts();
   }
 
   render() {
     return (
-      <div className="container d-flex flex-wrap justify-content-between mt-5 mb-5 ">
-        <div className={`${this.state.hide}`}>
-          <div className='opening-modal d-flex justify-content-center align-items-center'>
-            <div className="modal-dialog">
-              <div className="modal-content">
+      <div className="container d-flex flex-wrap justify-content-between mt-5 mb-5 fade-in">
+        <div className={`${this.props.showModal} `}>
+          <div className={`opening-modal d-flex justify-content-center align-items-center ${this.props.fadeOut} `}>
+            <div className="modal-dialog fade-in">
+              <div className="modal-content slide-in">
                 <div className="modal-header header d-flex justify-content-center">
                   <h4 className="text-center m-0 p-0" >Welcome to Technicali!</h4>
                 </div>
@@ -63,9 +55,9 @@ export default class ProductList extends React.Component {
                   </p>
                 </div>
                 <div className="row justify-content-center mb-4">
-                  <form action="submit" onSubmit={this.handleCloseOpeningModal}>
-                    <input required className="" type="checkbox" id="acknowledge" name="scales" />
-                    <label className="m-0 ml-2" htmlFor="scales">I acknowledge that this is strictly a demo application</label>
+                  <form action="submit" onSubmit={this.props.closeModal}>
+                    <input required className="" type="checkbox" id="acknowledge" name="agreed" />
+                    <label className="m-0 ml-2" htmlFor="agreed">I acknowledge that this is strictly a demo application</label>
                     <div className="d-flex justify-content-center">
                       <button type="submit" className="btn btn-primary mt-3" >Submit</button>
                     </div>
