@@ -83,7 +83,13 @@ img {
   100% { transform: translate3d(0, 100%, 0); }
 }
 
+.checkout-lables {
+  font-size: .75rem;
+}
 
+.object-fit-width {
+  width: 100%;
+}
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)

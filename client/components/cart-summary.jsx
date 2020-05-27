@@ -66,7 +66,7 @@ export default class CartSummary extends React.Component {
     return (
       <div className="container">
         <div>
-          <p className="pointer col-sm-3 pt-3 pl-0 pr-0" onClick={this.handleClickBackToCatalog}>&lt; Back to catalog</p>
+          <p className="pointer col-sm-3 pt-3 pl-0 pr-0" onClick={this.handleClickBackToCatalog}><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
           <h1>My Cart</h1>
         </div>
         <div className="d-flex flex-wrap justify-content-between mt-5">
