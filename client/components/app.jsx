@@ -4,6 +4,7 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
+import HeaderVideo from './header-video';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,7 +56,13 @@ export default class App extends React.Component {
       return <ProductDetails productId={this.state.view.params} setView={ this.setView } addToCart={ this.addToCart }/>;
     }
     if (view === 'catalog') {
-      return <ProductList setView={this.setView} showModal={this.state.showModal} fadeOut={this.state.fadeOut} closeModal={this.handleCloseOpeningModal}/>;
+      return (
+        <div>
+          <HeaderVideo />
+          <ProductList setView={this.setView} showModal={this.state.showModal} fadeOut={this.state.fadeOut} closeModal={this.handleCloseOpeningModal} />
+        </div>
+
+      );
     }
     if (view === 'cart') {
       return <CartSummary items={this.state.cart} setView={this.setView} />;
