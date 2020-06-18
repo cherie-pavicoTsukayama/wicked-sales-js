@@ -36,7 +36,7 @@ export default class ProductList extends React.Component {
 
   render() {
     return (
-      <div className="container d-flex flex-wrap justify-content-between mt-5 mb-5 fade-in">
+      <div id="productList" className="container d-flex flex-wrap justify-content-between mt-5 mb-5 fade-in">
         <div className={`${this.props.showModal} `}>
           <div className={`opening-modal d-flex justify-content-center align-items-center ${this.props.fadeOut} `}>
             <div className="modal-dialog fade-in">
@@ -54,10 +54,12 @@ export default class ProductList extends React.Component {
                     processed.
                   </p>
                 </div>
-                <div className="row justify-content-center mb-4">
+                <div className="d-flex justify-content-center mb-4">
                   <form action="submit" onSubmit={this.props.closeModal}>
-                    <input required className="" type="checkbox" id="acknowledge" name="agreed" />
-                    <label className="m-0 ml-2" htmlFor="agreed">I acknowledge that this is strictly a demo application</label>
+                    <div className="d-flex container">
+
+                      <label className="m-0 ml-2" htmlFor="agreed"><input required className="mr-2" type="checkbox" id="acknowledge" name="agreed" />I acknowledge that this is strictly a demo application</label>
+                    </div>
                     <div className="d-flex justify-content-center">
                       <button type="submit" className="btn btn-primary mt-3" >Submit</button>
                     </div>
