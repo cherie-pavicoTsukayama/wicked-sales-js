@@ -21,7 +21,7 @@ export default class ProductList extends React.Component {
 
   createProductCards() {
     const itemCard = this.state.products.map(item => {
-      return <ProductListItem key={item.productId} product={item} onClick={this.handleClick}/>;
+      return <ProductListItem key={item.productId} product={item} onClick={this.handleClick} addToCart={this.props.addToCart} productId={item.productId}/>;
     });
     return itemCard;
   }
@@ -67,10 +67,8 @@ export default class ProductList extends React.Component {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
-
         { this.createProductCards() }
       </div>
     );
