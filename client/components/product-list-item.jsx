@@ -24,8 +24,8 @@ export default function ProductListItem(props) {
       <div className="card-body pointer d-flex flex-wrap" id={props.product.productId}>
         <h5 className="card-title pointer" id={props.product.productId} onClick={props.onClick}>{props.product.name} </h5>
         <p className="text-muted pointer col-12 p-0" id={props.product.productId} onClick={props.onClick}>{convertedPrice}</p>
-        <div>
-          <button className="btn btn-primary" onClick={handledClickAddToCart}>Add to Cart</button>
+        <div className="col-12 p-0">
+          <button className="btn large-orange-button col-12 px-2" onClick={handledClickAddToCart}>Add to Cart</button>
         </div>
       </div>
     </div>
