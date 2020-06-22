@@ -37,7 +37,7 @@ video{
 
 img {
   height: 55%;
-  object-fit: contain;
+  object-fit: scale-down;
 }
 
 .item-card {

@@ -15,14 +15,17 @@ export default function ProductListItem(props) {
   }
 
   return (
-    <div key={props.product.productId} className="card item-card shadow-sm mb-3 pb-3 pointer grow " >
-      <img className="card-img-top pointer" src={props.product.image} alt="" id={props.product.productId} onClick={props.onClick}/>
-      <div className="card-body pointer" id={props.product.productId} onClick={props.onClick}>
+    <div key={props.product.productId} className="card item-card shadow-sm mb-3 pb-3 pointer  " >
+      <img className="card-img-top pointer mt-4 grow" src={props.product.image} alt="" id={props.product.productId} onClick={props.onClick}/>
+      <div className="card-body pointer d-flex flex-wrap" id={props.product.productId} onClick={props.onClick}>
         <h5 className="card-title pointer" id={props.product.productId} onClick={props.onClick}>{props.product.name} </h5>
-        <p className="text-muted pointer" id={props.product.productId} onClick={props.onClick}>{convertedPrice}</p>
-        <p className="card-text pointer" id={props.product.productId} onClick={props.onClick}>
+        <p className="text-muted pointer col-12 p-0" id={props.product.productId} onClick={props.onClick}>{convertedPrice}</p>
+        {/* <p className="card-text pointer" id={props.product.productId} onClick={props.onClick}>
           {props.product.shortDescription}
-        </p>
+        </p> */}
+        <div>
+          <button className="btn btn-primary">Add to Cart</button>
+        </div>
       </div>
     </div>
   );
