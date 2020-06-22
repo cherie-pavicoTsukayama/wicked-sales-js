@@ -53,13 +53,19 @@ export default class App extends React.Component {
   display() {
     const view = this.state.view.name;
     if (view === 'details') {
-      return <ProductDetails productId={this.state.view.params} setView={ this.setView } addToCart={ this.addToCart }/>;
+      return <ProductDetails productId={this.state.view.params}
+        setView={ this.setView }
+        addToCart={ this.addToCart }/>;
     }
     if (view === 'catalog') {
       return (
         <div>
           <HeaderVideo fadeIn={this.state.fadeIn}/>
-          <ProductList addToCart={ this.addToCart } setView={this.setView} showModal={this.state.showModal} fadeOut={this.state.fadeOut} closeModal={this.handleCloseOpeningModal} />
+          <ProductList addToCart={ this.addToCart }
+            setView={this.setView}
+            showModal={this.state.showModal}
+            fadeOut={this.state.fadeOut}
+            closeModal={this.handleCloseOpeningModal} />
         </div>
 
       );
@@ -68,7 +74,10 @@ export default class App extends React.Component {
       return <CartSummary items={this.state.cart} setView={this.setView} />;
     }
     if (view === 'checkout') {
-      return <CheckoutForm items={this.state.cart} placeOrder={this.placeOrder} setView={this.setView}/>;
+      return <CheckoutForm
+        items={this.state.cart}
+        placeOrder={this.placeOrder}
+        setView={this.setView}/>;
     }
 
   }
