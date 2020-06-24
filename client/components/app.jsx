@@ -5,6 +5,7 @@ import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckoutForm from './checkout-form';
 import HeaderVideo from './header-video';
+import Toast from './toast';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,7 +18,9 @@ export default class App extends React.Component {
         params: {}
       },
       cart: [],
-      hide: ''
+      hide: '',
+      product: {},
+      toast: 'display-none'
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
@@ -61,6 +64,7 @@ export default class App extends React.Component {
       return (
         <div>
           <HeaderVideo fadeIn={this.state.fadeIn}/>
+          <Toast product={this.state.product} display={this.state.toast}/>
           <ProductList addToCart={ this.addToCart }
             setView={this.setView}
             showModal={this.state.showModal}
@@ -90,6 +94,14 @@ export default class App extends React.Component {
   }
 
   addToCart(product) {
+    this.setState({
+      product: product,
+      toast: 'toast-body-container col d-flex justify-content-center'
+    });
+    setTimeout(() => {
+      this.setState({ toast: 'display-none' });
+    }, 3000);
+
     const post = {
       method: 'POST',
       headers: {
@@ -106,6 +118,7 @@ export default class App extends React.Component {
         this.setState({ cart: newCart });
       })
       .catch(err => console.error(err));
+
   }
 
   placeOrder(details) {

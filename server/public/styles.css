@@ -75,6 +75,11 @@ img {
   display: none;
 }
 
+.vis-hidden {
+  visibility: hidden;
+  z-index: -2;
+}
+
 .fade-in {
   animation: fade-in 1s;
   animation-fill-mode: forwards;
@@ -142,6 +147,18 @@ html {
   border-radius: 3px;
   border: 1px solid #FD8023;
   padding: 15px 0;
+
+}
+
+.toast-container {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.toast-body-container {
+  background-color: rgb(250, 171, 73);
+  height: 4vw;
 
 }
 
