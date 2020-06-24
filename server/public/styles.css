@@ -145,6 +145,18 @@ html {
 
 }
 
+.toast-container {
+  position: fixed;
+  top: 40%;
+  z-index: 1;
+}
+
+.toast-body {
+  background-color: rgb(250, 171, 73);
+  height: 4vw;
+  border-radius: 5px;
+}
+
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
