@@ -147,7 +147,16 @@ html {
   border-radius: 3px;
   border: 1px solid #FD8023;
   padding: 15px 0;
+}
 
+.large-orange-button:active {
+  width: 100%;
+  background-color: grey;
+  color: black;
+  border-radius: 3px;
+  border: 1px solid #FD8023;
+  padding: 15px 0;
+  transform: scale(.9);
 }
 
 .toast-container {
