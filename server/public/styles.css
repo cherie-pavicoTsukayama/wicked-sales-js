@@ -75,6 +75,10 @@ img {
   display: none;
 }
 
+.vis-hidden {
+  visibility: hidden;
+}
+
 .fade-in {
   animation: fade-in 1s;
   animation-fill-mode: forwards;
@@ -154,7 +158,7 @@ html {
 .toast-body {
   background-color: rgb(250, 171, 73);
   height: 4vw;
-  border-radius: 5px;
+
 }
 
 @media only screen

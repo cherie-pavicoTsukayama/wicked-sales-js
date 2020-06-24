@@ -19,7 +19,8 @@ export default class App extends React.Component {
       },
       cart: [],
       hide: '',
-      product: {}
+      product: {},
+      toast: 'vis-hidden'
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
@@ -63,7 +64,7 @@ export default class App extends React.Component {
       return (
         <div>
           <HeaderVideo fadeIn={this.state.fadeIn}/>
-          <Toast product={this.state.product}/>
+          <Toast product={this.state.product} display={this.state.toast}/>
           <ProductList addToCart={ this.addToCart }
             setView={this.setView}
             showModal={this.state.showModal}
@@ -94,8 +95,12 @@ export default class App extends React.Component {
 
   addToCart(product) {
     this.setState({
-      product: product
+      product: product,
+      toast: ''
     });
+    setTimeout(() => {
+      this.setState({ toast: 'vis-hidden' });
+    }, 3000);
 
     const post = {
       method: 'POST',
