@@ -20,7 +20,7 @@ export default class App extends React.Component {
       cart: [],
       hide: '',
       product: {},
-      toast: 'vis-hidden'
+      toast: 'display-none'
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
@@ -96,10 +96,10 @@ export default class App extends React.Component {
   addToCart(product) {
     this.setState({
       product: product,
-      toast: ''
+      toast: 'toast-body-container col d-flex justify-content-center'
     });
     setTimeout(() => {
-      this.setState({ toast: 'vis-hidden' });
+      this.setState({ toast: 'display-none' });
     }, 3000);
 
     const post = {
