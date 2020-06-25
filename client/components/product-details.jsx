@@ -21,7 +21,7 @@ export default class ProductDetails extends React.Component {
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
     this.handleClickQuantityIncrease = this.handleClickQuantityIncrease.bind(this);
-
+    this.handleClickQuantityDecrease = this.handleClickQuantityDecrease.bind(this);
   }
 
   convertPrice(rawPrice) {
@@ -55,11 +55,13 @@ export default class ProductDetails extends React.Component {
     });
   }
 
-  handleClickQuantityIncrease() {
+  handleClickQuantityDecrease() {
     const quantityIncrease = this.state.quantity;
-    this.setState({
-      quantity: (quantityIncrease + 1)
-    });
+    if (this.state.quantity > 0) {
+      this.setState({
+        quantity: (quantityIncrease - 1)
+      });
+    }
   }
 
   // componentDidMount() {
@@ -95,7 +97,10 @@ export default class ProductDetails extends React.Component {
             <div className="card col-4 d-flex flex-wrap flex-column justify-content-center">
               <h2>{ this.state.product.name }</h2>
               <h3 className="mt-3">{ this.convertPrice(this.state.product.price) }</h3>
-              <Quantity handleClickIncrease={ this.handleClickQuantityIncrease } quantity={ this.state.quantity }/>
+              <Quantity
+                handleClickIncrease={ this.handleClickQuantityIncrease }
+                handleClickDecrease={ this.handleClickQuantityDecrease }
+                quantity={ this.state.quantity }/>
               <div className="mt-5 d-flex justify-content-around">
                 <div className="col-4 d-flex flex-wrap justify-content-center py-3">
                   <i className="fas fa-birthday-cake fa-2x mb-3 grey"></i>
