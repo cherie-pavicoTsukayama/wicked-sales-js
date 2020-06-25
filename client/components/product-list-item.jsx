@@ -16,7 +16,7 @@ export default function ProductListItem(props) {
 
   const image = props.product.image.split(',');
   function handledClickAddToCart() {
-    props.addToCart(props.product);
+    props.addToCart(props.product, 1);
   }
 
   return (
