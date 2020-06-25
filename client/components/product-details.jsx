@@ -94,9 +94,10 @@ export default class ProductDetails extends React.Component {
             <div className="card d-flex flex-wrap w-60 mr-4">
               <img className="col mr-2" src={ this.state.images[0] } alt="" />
             </div>
-            <div className="card col-4 d-flex flex-wrap flex-column justify-content-center">
+            <div className="card col-4 d-flex flex-wrap flex-column justify-content-center py-4 px-5">
               <h2>{ this.state.product.name }</h2>
               <h3 className="mt-3">{ this.convertPrice(this.state.product.price) }</h3>
+              <p> {this.state.product.shortDescription}</p>
               <Quantity
                 handleClickIncrease={ this.handleClickQuantityIncrease }
                 handleClickDecrease={ this.handleClickQuantityDecrease }
