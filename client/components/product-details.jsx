@@ -15,11 +15,12 @@ export default class ProductDetails extends React.Component {
         pieces: 958,
         itemNum: 42099
       },
-      images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Li ebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg']
-
+      images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Li ebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg'],
+      quantity: 0
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
+    this.handleClickQuantityIncrease = this.handleClickQuantityIncrease.bind(this);
 
   }
 
@@ -47,6 +48,20 @@ export default class ProductDetails extends React.Component {
     this.props.addToCart(this.state.product);
   }
 
+  handleClickQuantityIncrease() {
+    const quantityIncrease = this.state.quantity;
+    this.setState({
+      quantity: (quantityIncrease + 1)
+    });
+  }
+
+  handleClickQuantityIncrease() {
+    const quantityIncrease = this.state.quantity;
+    this.setState({
+      quantity: (quantityIncrease + 1)
+    });
+  }
+
   // componentDidMount() {
   //   fetch(`api/products/${this.props.productId.productId}`)
   //     .then(res => res.json())
@@ -60,6 +75,10 @@ export default class ProductDetails extends React.Component {
   //     .catch(err => console.error(err));
   // }
 
+  componentDidUpdate() {
+
+  }
+
   render() {
     if (this.state.product === null) {
       return null;
@@ -67,30 +86,30 @@ export default class ProductDetails extends React.Component {
       return (
         <div className="container mt-3 mb-5">
           <div className="col-sm-5 pt-3 pl-3 spacing">
-            <p className="pointer" onClick={this.handleClickBackToCatalog}><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
+            <p className="pointer" onClick={ this.handleClickBackToCatalog }><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
           </div>
           <div className="d-flex justify-content-between">
             <div className="card d-flex flex-wrap w-60 mr-4">
-              <img className="col mr-2" src={this.state.images[0]} alt="" />
+              <img className="col mr-2" src={ this.state.images[0] } alt="" />
             </div>
             <div className="card col-4 d-flex flex-wrap flex-column justify-content-center">
-              <h2>{this.state.product.name}</h2>
-              <h3 className="mt-3">{this.convertPrice(this.state.product.price)}</h3>
-              <Quantity />
+              <h2>{ this.state.product.name }</h2>
+              <h3 className="mt-3">{ this.convertPrice(this.state.product.price) }</h3>
+              <Quantity handleClickIncrease={ this.handleClickQuantityIncrease } quantity={ this.state.quantity }/>
               <div className="mt-5 d-flex justify-content-around">
                 <div className="col-4 d-flex flex-wrap justify-content-center py-3">
                   <i className="fas fa-birthday-cake fa-2x mb-3 grey"></i>
-                  <h3 className="col-12">{this.state.product.ages}</h3>
+                  <h3 className="col-12">{ this.state.product.ages }</h3>
                   <p>Ages</p>
                 </div>
                 <div className="col-4 d-flex flex-wrap justify-content-center py-3 border-left border-right">
                   <i className="fab fa-simplybuilt fa-2x mb-3 grey "></i>
-                  <h3>{this.state.product.pieces}</h3>
+                  <h3>{ this.state.product.pieces }</h3>
                   <p>Pieces</p>
                 </div>
                 <div className="col-4 d-flex flex-wrap justify-content-center py-3">
                   <i className="fas fa-hashtag fa-2x mb-3 grey"></i>
-                  <h3>{this.state.product.itemNum}</h3>
+                  <h3>{ this.state.product.itemNum }</h3>
                   <p>Item#</p>
                 </div>
               </div>
