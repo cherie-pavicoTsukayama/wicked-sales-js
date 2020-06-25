@@ -8,6 +8,7 @@ export default class ProductDetails extends React.Component {
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
+
   }
 
   convertPrice(rawPrice) {
@@ -37,7 +38,13 @@ export default class ProductDetails extends React.Component {
   componentDidMount() {
     fetch(`api/products/${this.props.productId.productId}`)
       .then(res => res.json())
-      .then(data => this.setState({ product: data }))
+      .then(data => {
+        const imageArray = data.image.split(',');
+        this.setState({
+          product: data,
+          images: imageArray
+        });
+      })
       .catch(err => console.error(err));
   }
 
@@ -52,7 +59,7 @@ export default class ProductDetails extends React.Component {
               <p className="pointer" onClick={this.handleClickBackToCatalog}><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
             </div>
             <div className="row no-gutters p-2 pt-3 d-flex justify-content-around">
-              <img className="col-sm-5 mr-2" src={this.state.product.image} alt="" />
+              <img className="col-sm-5 mr-2" src={this.state.images[0]} alt="" />
               <div className="col-sm-6">
                 <h1>{this.state.product.name}</h1>
                 <h2 className="text-muted">{ this.convertPrice(this.state.product.price) }</h2>
