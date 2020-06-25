@@ -16,7 +16,7 @@ export default class ProductDetails extends React.Component {
         itemNum: 42099
       },
       images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Li ebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg'],
-      quantity: 0
+      quantity: 1
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
@@ -45,7 +45,7 @@ export default class ProductDetails extends React.Component {
   }
 
   handleClickAddToCart() {
-    this.props.addToCart(this.state.product);
+    this.props.addToCart(this.state.product, this.state.quantity);
   }
 
   handleClickQuantityIncrease() {
@@ -101,6 +101,7 @@ export default class ProductDetails extends React.Component {
                 handleClickIncrease={ this.handleClickQuantityIncrease }
                 handleClickDecrease={ this.handleClickQuantityDecrease }
                 quantity={ this.state.quantity }/>
+              <button className="btn large-orange-button px-2 mt-4" onClick={ this.handleClickAddToCart }>Add to Cart</button>
               <div className="mt-5 d-flex justify-content-around">
                 <div className="col-4 d-flex flex-wrap justify-content-center py-3">
                   <i className="fas fa-birthday-cake fa-2x mb-3 grey"></i>
