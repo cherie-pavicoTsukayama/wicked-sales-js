@@ -190,6 +190,48 @@ html {
   cursor: default;
 }
 
+.carousel-container {
+  height: 100px;
+  width: 80%;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  /* margin: 40px auto; */
+  border-radius:4px;
+}
+
+.carousel-box {
+  height: 100px;
+  width: 200%;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+}
+
+.siblings {
+  height: 300px;
+  width: 50%;
+}
+
+.sibling-one {
+  background-color: #8e24aa;
+}
+
+.sibling-two {
+  background-color: #e65100;
+}
+
+.carousel-button {
+  margin: auto;
+  color: #1565c0;
+  cursor: pointer;
+  font-size:24px;
+}
+
+.move-right {
+  transform: translateX(-50%);
+  -webkit-transform:translateX(-50%);
+}
+
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
