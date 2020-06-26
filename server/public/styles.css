@@ -207,16 +207,16 @@ html {
   -webkit-transition: 0.3s ease-in-out;
 }
 
-.siblings {
+.image-block{
   height: 300px;
   width: 50%;
 }
 
-.sibling-one {
+.block-one {
   background-color: #8e24aa;
 }
 
-.sibling-two {
+.block-two {
   background-color: #e65100;
 }
 
