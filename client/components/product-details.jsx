@@ -6,19 +6,10 @@ export default class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {
-        longDescription: 'Get ready for a colossal LEGO® build and play experience with the 4,108-piece LEGO Technic™ Liebherr R 9800 Excavator. Developed in partnership with Liebherr, this replica model is operated via the intuitive LEGO TECHNIC CONTROL+ app and powered by 2 advanced Smart Hubs with 7 motors. The sophisticated app technology enables super-precise movement and amazing functionality, while delivering endless authentic digital play combinations via 4 different control screens with cool graphics. The Multi-...',
-        name: 'Liebherr R-9800 Excavator',
-        price: 49999,
-        productId: 4,
-        shortDescription: 'This excavator model features the LEGO® TECHNIC™ CONTROL+ app for a more immersive and realistic play experience and hours of fun.',
-        ages: '11+',
-        pieces: 958,
-        itemNum: 42099
-      },
-      images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg'],
+      product: {},
+      images: [],
       quantity: 1,
-      mainImage: '/images/Lego-Liebherr-R-9800-Excavator.jpeg'
+      mainImage: ''
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
@@ -73,18 +64,19 @@ export default class ProductDetails extends React.Component {
     });
   }
 
-  // componentDidMount() {
-  //   fetch(`api/products/${this.props.productId.productId}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       // const imageArray = data.image.split(',');
-  //       this.setState({
-  //         product: data
-  //         // images: imageArray
-  //       });
-  //     })
-  //     .catch(err => console.error(err));
-  // }
+  componentDidMount() {
+    fetch(`api/products/${this.props.productId.productId}`)
+      .then(res => res.json())
+      .then(data => {
+        const imageArray = data.image.split(',');
+        this.setState({
+          product: data,
+          images: imageArray,
+          mainImage: imageArray[0]
+        });
+      })
+      .catch(err => console.error(err));
+  }
 
   componentDidUpdate() {
 
