@@ -190,13 +190,17 @@ html {
   cursor: default;
 }
 
+.detail-image-display {
+  height: 100%;
+  object-fit: contain;
+}
+
 .carousel-container {
   height: 100px;
   width: 80%;
   background-color: #fafafa;
   border: 1px solid #ccc;
   overflow: hidden;
-  /* margin: 40px auto; */
   border-radius:4px;
 }
 
@@ -222,7 +226,6 @@ html {
 
 .carousel-button {
   margin: auto;
-  color: #1565c0;
   cursor: pointer;
   font-size:24px;
 }

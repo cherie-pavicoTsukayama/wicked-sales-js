@@ -92,9 +92,13 @@ export default class ProductDetails extends React.Component {
             <p className="pointer" onClick={ this.handleClickBackToCatalog }><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
           </div>
           <div className="d-flex justify-content-between">
-            <div className="card d-flex flex-nowrap w-60 mr-4">
-              <img className="col-12 mr-2" src={ this.state.images[0] } alt="" />
-              <Carousel />
+            <div className="card d-flex flex-nowrap w-60 mr-4 justify-content-center align-content-center">
+              <div>
+                <img className="col-12 detail-image-display" src={this.state.images[0]} alt="" />
+              </div>
+              <div>
+                <Carousel />
+              </div>
             </div>
             <div className="card col-4 d-flex flex-wrap flex-column justify-content-center py-4 px-5">
               <h2>{ this.state.product.name }</h2>

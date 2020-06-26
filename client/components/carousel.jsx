@@ -20,15 +20,15 @@ export default class Carousel extends React.Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="col-12 align-content-center d-flex">
         <button id="prev" className="btn carousel-button" onClick={ this.handleClickPrev }>
           <i className="fas fa-chevron-left"></i>
         </button>
         <div className="carousel-container">
           <div id="carouselBox" className={`carousel-box d-flex ${this.state.toggleMoveBlock}`}>
-            <div className="siblings image-block block-one">
+            <div className="image-block block-one">
             </div>
-            <div className="siblings image-block block-two">
+            <div className="image-block block-two">
             </div>
           </div>
         </div>
