@@ -16,7 +16,7 @@ export default class ProductDetails extends React.Component {
         pieces: 958,
         itemNum: 42099
       },
-      images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Li ebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg'],
+      images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg'],
       quantity: 1
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
@@ -94,13 +94,13 @@ export default class ProductDetails extends React.Component {
           <div className="d-flex justify-content-between">
             <div className="card d-flex flex-nowrap w-60 mr-4 justify-content-center align-content-center">
               <div>
-                <img className="col-12 detail-image-display" src={this.state.images[0]} alt="" />
+                <img className="col-12 detail-image-display" src={ this.state.images[0] } alt="" />
               </div>
               <div>
-                <Carousel />
+                <Carousel images={ this.state.images }/>
               </div>
             </div>
-            <div className="card col-4 d-flex flex-wrap flex-column justify-content-center py-4 px-5">
+            <div className="card col-4 d-flex flex-wrap flex-column justify-content-center py-4 px-4">
               <h2>{ this.state.product.name }</h2>
               <h3 className="mt-3">{ this.convertPrice(this.state.product.price) }</h3>
               <p> {this.state.product.shortDescription}</p>

@@ -198,10 +198,9 @@ html {
 .carousel-container {
   height: 100px;
   width: 80%;
-  background-color: #fafafa;
-  border: 1px solid #ccc;
   overflow: hidden;
   border-radius:4px;
+
 }
 
 .carousel-box {
@@ -212,13 +211,11 @@ html {
 }
 
 .image-block{
-  height: 300px;
+  height: 100%;
   width: 50%;
 }
 
-.block-one {
-  background-color: #8e24aa;
-}
+
 
 .block-two {
   background-color: #e65100;
@@ -233,6 +230,18 @@ html {
 .move-right {
   transform: translateX(-50%);
   -webkit-transform:translateX(-50%);
+}
+
+.thumbnail-container {
+  height: 75px;
+  background-color: white;
+
+}
+
+.thumbnail {
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid rgb(225, 225, 225);
 }
 
 @media only screen
