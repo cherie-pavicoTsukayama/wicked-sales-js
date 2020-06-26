@@ -22,7 +22,7 @@ export default class Carousel extends React.Component {
   createFirstCarouselThumbnailBlock() {
     const firstThreeImages = this.props.images.slice(0, 3);
     const thumbnail = firstThreeImages.map(image => {
-      return <CarouselThumbnail key={image} image={image} />;
+      return <CarouselThumbnail key={image} image={image} selectMainImage={this.props.selectMainImage} />;
     });
     return thumbnail;
   }
@@ -30,7 +30,7 @@ export default class Carousel extends React.Component {
   createSecondCarouselThumbnailBlock() {
     const firstThreeImages = this.props.images.slice(3, 6);
     const thumbnail = firstThreeImages.map(image => {
-      return <CarouselThumbnail key={image} image={image} />;
+      return <CarouselThumbnail key={image} image={image} selectMainImage={this.props.selectMainImage} />;
     });
     return thumbnail;
   }
@@ -51,7 +51,7 @@ export default class Carousel extends React.Component {
             </div>
           </div>
         </div>
-        <button id="next" className=" btn carousel-button" onClick={ this.handleClickNext }>
+        <button id="next" className="btn carousel-button" onClick={ this.handleClickNext }>
           <i className="fas fa-chevron-right"></i>
         </button>
       </div>

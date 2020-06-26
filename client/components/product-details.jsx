@@ -17,12 +17,14 @@ export default class ProductDetails extends React.Component {
         itemNum: 42099
       },
       images: ['/images/Lego-Liebherr-R-9800-Excavator.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-1.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-2.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-3.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-4.jpeg', '/images/Lego-Liebherr-R-9800-Excavator-5.jpeg'],
-      quantity: 1
+      quantity: 1,
+      mainImage: '/images/Lego-Liebherr-R-9800-Excavator.jpeg'
     };
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.handleClickAddToCart = this.handleClickAddToCart.bind(this);
     this.handleClickQuantityIncrease = this.handleClickQuantityIncrease.bind(this);
     this.handleClickQuantityDecrease = this.handleClickQuantityDecrease.bind(this);
+    this.handleClickSelectMainImage = this.handleClickSelectMainImage.bind(this);
   }
 
   convertPrice(rawPrice) {
@@ -65,6 +67,12 @@ export default class ProductDetails extends React.Component {
     }
   }
 
+  handleClickSelectMainImage(path) {
+    this.setState({
+      mainImage: path
+    });
+  }
+
   // componentDidMount() {
   //   fetch(`api/products/${this.props.productId.productId}`)
   //     .then(res => res.json())
@@ -94,10 +102,10 @@ export default class ProductDetails extends React.Component {
           <div className="d-flex justify-content-between">
             <div className="card d-flex flex-nowrap w-60 mr-4 justify-content-center align-content-center">
               <div>
-                <img className="col-12 detail-image-display" src={ this.state.images[0] } alt="" />
+                <img className="col-12 detail-image-display" src={ this.state.mainImage } alt="" />
               </div>
               <div>
-                <Carousel images={ this.state.images }/>
+                <Carousel images={this.state.images} selectMainImage={this.handleClickSelectMainImage}/>
               </div>
             </div>
             <div className="card col-4 d-flex flex-wrap flex-column justify-content-center py-4 px-4">
