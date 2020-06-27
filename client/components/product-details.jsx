@@ -92,9 +92,9 @@ export default class ProductDetails extends React.Component {
             <p className="pointer" onClick={ this.handleClickBackToCatalog }><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
           </div>
           <div className="d-flex justify-content-between">
-            <div className="card d-flex flex-nowrap w-60 mr-4 justify-content-center align-content-center">
-              <div>
-                <img className="col-12 detail-image-display" src={ this.state.mainImage } alt="" />
+            <div className="card d-flex w-60 mr-4 justify-content-around">
+              <div className="detail-image-display-container d-flex">
+                <img className="col-12 detail-image-display align-self-center" src={ this.state.mainImage } alt="" />
               </div>
               <div>
                 <Carousel images={this.state.images} selectMainImage={this.handleClickSelectMainImage}/>
@@ -128,28 +128,6 @@ export default class ProductDetails extends React.Component {
               </div>
             </div>
           </div>
-
-          {/* <div className="card d-flex flex-nowrap">
-            <div className="row no-gutters p-2 pt-3 d-flex justify-content-around">
-              <img className="col-sm-5 mr-2" src={this.state.images[0]} alt="" />
-            </div>
-              <div className="col-sm-6">
-                <h1>{this.state.product.name}</h1>
-                <h2 className="text-muted">{ this.convertPrice(this.state.product.price) }</h2>
-                <p> {this.state.product.shortDescription}</p>
-                <button
-                  onClick={ this.handleClickAddToCart }
-                  className="btn btn-primary"
-                  type="button">
-                    Add to Cart
-                </button>
-              </div>
-            </div>
-            <div className="pr-5 pl-5 pb-3 pt-3">
-              <p>{this.state.product.longDescription}</p>
-            </div>
-          </div> */}
-
         </div>
       );
     }

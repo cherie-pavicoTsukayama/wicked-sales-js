@@ -38,7 +38,7 @@ export default class Carousel extends React.Component {
   createCarousel() {
     if (this.props.images.length > 1) {
       return (
-        <div className="col-12 align-content-center d-flex border-top mt-4 py-3">
+        <div className="col-12 align-content-center d-flex border-top  py-3">
           <button id="prev" className="btn carousel-button" onClick={this.handleClickPrev}>
             <i className="fas fa-chevron-left"></i>
           </button>
@@ -59,7 +59,7 @@ export default class Carousel extends React.Component {
       );
     } else {
       return (
-        <div className="col-12 align-content-center d-flex border-top mt-4 py-3">
+        <div className="col-12 align-content-center d-flex border-top  py-3">
           <div className="col-12">
             <div id="carouselBox" className='d-flex justify-content-center'>
               <div className="image-block d-flex justify-content-center">
