@@ -1,4 +1,5 @@
 import React from 'react';
+import Quantity from './quantity-control';
 
 export default function CartSummaryItem(item) {
   const price = '' + item.product.price;
@@ -14,14 +15,26 @@ export default function CartSummaryItem(item) {
   } else {
     convertedPrice += (price.slice(0, 2) + '.' + price.slice(2, 4));
   }
+  // console.log(item);
   return (
     <div className="card mb-5">
       <div className="row no-gutters p-2 pt-3  d-flex justify-content-around shadow-sm align-items-center">
-        <img className="col-sm-5 mr-2" src={image[0]} alt="" />
-        <div className="col-sm-6">
-          <h1>{item.product.name}</h1>
-          <h2 className="text-muted">{convertedPrice}</h2>
-          <p> {item.product.shortDescription}</p>
+        <div className="col-sm-1">
+          <img className="cart-image" src={image[0]} alt="" />
+        </div>
+        <div className="col-sm-2">
+          <p className="font-weight-bold">{item.product.name}</p>
+          <h1>{item.product.itemNum}</h1>
+          <p className="font-weight-bold">{convertedPrice}</p>
+          {/* <p> {item.product.shortDescription}</p> */}
+        </div>
+        <div className="d-flex col-sm-9 align-items-center justify-content-center">
+          <div className="col-12 d-flex justify-content-center">
+            <Quantity />
+            <button className="btn">
+              <i className="far fa-trash-alt col-2"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>

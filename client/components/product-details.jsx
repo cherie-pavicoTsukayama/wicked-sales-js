@@ -104,10 +104,12 @@ export default class ProductDetails extends React.Component {
               <h2>{ this.state.product.name }</h2>
               <h3 className="mt-3">{ this.convertPrice(this.state.product.price) }</h3>
               <p> {this.state.product.shortDescription}</p>
-              <Quantity
-                handleClickIncrease={ this.handleClickQuantityIncrease }
-                handleClickDecrease={ this.handleClickQuantityDecrease }
-                quantity={ this.state.quantity }/>
+              <div className="mt-4">
+                <Quantity
+                  handleClickIncrease={this.handleClickQuantityIncrease}
+                  handleClickDecrease={this.handleClickQuantityDecrease}
+                  quantity={this.state.quantity} />
+              </div>
               <button className="btn large-orange-button px-2 mt-4" onClick={ this.handleClickAddToCart }>Add to Cart</button>
               <div className="mt-5 d-flex justify-content-around">
                 <div className="col-4 d-flex flex-wrap justify-content-center py-3">
