@@ -93,7 +93,7 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  addToCart(product) {
+  addToCart(product, quantity) {
     this.setState({
       product: product,
       toast: 'toast-body-container col d-flex justify-content-center'
@@ -109,16 +109,16 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(product)
     };
-
-    fetch('/api/cart', post)
-      .then(res => res.json())
-      .then(newItem => {
-        const currentCart = this.state.cart.slice();
-        const newCart = currentCart.concat(newItem);
-        this.setState({ cart: newCart });
-      })
-      .catch(err => console.error(err));
-
+    for (let i = 0; i < quantity; i++) {
+      fetch('/api/cart', post)
+        .then(res => res.json())
+        .then(newItem => {
+          const currentCart = this.state.cart.slice();
+          const newCart = currentCart.concat(newItem);
+          this.setState({ cart: newCart });
+        })
+        .catch(err => console.error(err));
+    }
   }
 
   placeOrder(details) {

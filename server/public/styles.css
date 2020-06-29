@@ -147,7 +147,16 @@ html {
   border-radius: 3px;
   border: 1px solid #FD8023;
   padding: 15px 0;
+}
 
+.large-orange-button:active {
+  width: 100%;
+  background-color: grey;
+  color: black;
+  border-radius: 3px;
+  border: 1px solid #FD8023;
+  padding: 15px 0;
+  transform: scale(.9);
 }
 
 .toast-container {
@@ -160,6 +169,82 @@ html {
   background-color: rgb(250, 171, 73);
   height: 4vw;
 
+}
+
+.w-60 {
+  width: 67%;
+}
+
+.grey {
+  color: rgb(162, 162, 162);
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.muted-button {
+  color: rgb(183, 183, 183);
+}
+.muted-button:hover {
+  cursor: default;
+}
+
+.detail-image-display-container {
+  height: 70%;
+  width: 100%;
+}
+
+.detail-image-display {
+  height: 400px;
+  object-fit: contain;
+}
+
+.carousel-container {
+  height: 100px;
+  width: 80%;
+  overflow: hidden;
+  border-radius:4px;
+
+}
+
+.carousel-box {
+  height: 100px;
+  width: 200%;
+  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+}
+
+.image-block{
+  height: 100%;
+  width: 50%;
+}
+
+.block-two {
+  background-color: #e65100;
+}
+
+.carousel-button {
+  margin: auto;
+  cursor: pointer;
+  font-size:24px;
+}
+
+.move-right {
+  transform: translateX(-50%);
+  -webkit-transform:translateX(-50%);
+}
+
+.thumbnail-container {
+  height: 75px;
+  background-color: white;
+
+}
+
+.thumbnail {
+  height: 100%;
+  object-fit: contain;
+  border: 1px solid rgb(225, 225, 225);
 }
 
 @media only screen
