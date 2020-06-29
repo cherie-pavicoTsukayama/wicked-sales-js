@@ -8,7 +8,6 @@ export default class ProductList extends React.Component {
     };
     this.createProductCards = this.createProductCards.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    // this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
   }
 
   getProducts() {
