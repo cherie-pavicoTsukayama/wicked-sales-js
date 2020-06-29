@@ -14,7 +14,6 @@ export default function CartSummaryItem(item) {
   } else {
     convertedPrice += (price.slice(0, 2) + '.' + price.slice(2, 4));
   }
-
   return (
     <div className="card mb-5">
       <div className="row no-gutters p-2 pt-3  d-flex justify-content-around shadow-sm align-items-center">
