@@ -19,16 +19,16 @@ export default function CartSummaryItem(item) {
   return (
     <div className="card mb-5">
       <div className="row no-gutters p-2 pt-3  d-flex justify-content-around shadow-sm align-items-center">
-        <div className="col-sm-1">
+        <div className="col-sm-1 mr-3">
           <img className="cart-image" src={image[0]} alt="" />
         </div>
         <div className="col-sm-2">
-          <p className="font-weight-bold">{item.product.name}</p>
-          <h1>{item.product.itemNum}</h1>
+          <p className="font-weight-bold m-0">{item.product.name}</p>
+          <p className="text-muted cart-item-number">{item.product.itemNum}</p>
           <p className="font-weight-bold">{convertedPrice}</p>
           {/* <p> {item.product.shortDescription}</p> */}
         </div>
-        <div className="d-flex col-sm-9 align-items-center justify-content-center">
+        <div className="d-flex col-sm-8 align-items-center justify-content-center">
           <div className="col-12 d-flex justify-content-center">
             <Quantity />
             <button className="btn">

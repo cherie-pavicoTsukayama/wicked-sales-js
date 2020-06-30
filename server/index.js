@@ -180,6 +180,11 @@ app.post('/api/orders', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/cart/:productId/:cartItemId', (req, res, next) => {
+//  return req.params.cartItemId;
+
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
