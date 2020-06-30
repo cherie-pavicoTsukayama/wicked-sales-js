@@ -68,7 +68,8 @@ app.get('/api/cart', (req, res, next) => {
            "p"."productId",
            "p"."image",
            "p"."name",
-           "p"."shortDescription"
+           "p"."shortDescription",
+           "p"."itemNum"
       from "cartItems" as "c"
       join "products" as "p" using ("productId")
      where "c"."cartId" = $1
@@ -177,6 +178,25 @@ app.post('/api/orders', (req, res, next) => {
       res.status(201).json(result.rows[0]);
     })
     .catch(err => next(err));
+});
+
+app.delete('/api/cart/:cartItemId', (req, res, next) => {
+  const { cartItemId } = req.params;
+  if (isNaN(cartItemId)) {
+    return res.status(400).json({
+      error: 'Product Id or Cart Item Id must be a valid number'
+    });
+  }
+  const sql = `
+    delete from "cartItems"
+        where "cartId" = $1
+          AND "cartItemId" = $2
+    returning *
+    `;
+  const value = [req.session.cartId, cartItemId];
+  db.query(sql, value)
+    .then(result => res.json(result.rows))
+    .catch(err => console.error(err));
 });
 
 app.use('/api', (req, res, next) => {
