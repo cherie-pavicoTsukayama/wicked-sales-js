@@ -180,9 +180,24 @@ app.post('/api/orders', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.get('/api/cart/:productId/:cartItemId', (req, res, next) => {
-//  return req.params.cartItemId;
-
+app.delete('/api/cart/:productId/:cartItemId', (req, res, next) => {
+  const { productId, cartItemId } = req.params;
+  if (isNaN(productId) || isNaN(cartItemId)) {
+    return res.status(400).json({
+      error: 'Product Id or Cart Item Id must be a valid number'
+    });
+  }
+  const sql = `
+    delete from "cartItems"
+        where "cartId" = $1
+          AND "productId" = $2
+          AND "cartItemId" = $3
+    returning *
+    `;
+  const value = [req.session.cartId, productId, cartItemId];
+  db.query(sql, value)
+    .then(result => res.json(result.rows))
+    .catch(err => console.error(err));
 });
 
 app.use('/api', (req, res, next) => {
