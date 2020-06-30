@@ -180,9 +180,9 @@ app.post('/api/orders', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/cart/:productId/:cartItemId', (req, res, next) => {
-  const { productId, cartItemId } = req.params;
-  if (isNaN(productId) || isNaN(cartItemId)) {
+app.delete('/api/cart/:cartItemId', (req, res, next) => {
+  const { cartItemId } = req.params;
+  if (isNaN(cartItemId)) {
     return res.status(400).json({
       error: 'Product Id or Cart Item Id must be a valid number'
     });
@@ -190,11 +190,10 @@ app.delete('/api/cart/:productId/:cartItemId', (req, res, next) => {
   const sql = `
     delete from "cartItems"
         where "cartId" = $1
-          AND "productId" = $2
-          AND "cartItemId" = $3
+          AND "cartItemId" = $2
     returning *
     `;
-  const value = [req.session.cartId, productId, cartItemId];
+  const value = [req.session.cartId, cartItemId];
   db.query(sql, value)
     .then(result => res.json(result.rows))
     .catch(err => console.error(err));
