@@ -145,6 +145,7 @@ export default class App extends React.Component {
     };
     fetch(`api/cart/${cartItemId}`, remove)
       .then(res => res.json())
+      .then(() => this.getCartItems())
       .catch(err => console.error(err));
   }
 
