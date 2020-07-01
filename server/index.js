@@ -195,7 +195,15 @@ app.delete('/api/cart/:cartItemId', (req, res, next) => {
     `;
   const value = [req.session.cartId, cartItemId];
   db.query(sql, value)
-    .then(result => res.json(result.rows))
+    .then(result => {
+      if (!result.rows[0]) {
+        res.status(404).json({
+          error: 'Cart item does not exist.'
+        });
+      } else {
+        res.status(200).json(result.rows);
+      }
+    })
     .catch(err => console.error(err));
 });
 
