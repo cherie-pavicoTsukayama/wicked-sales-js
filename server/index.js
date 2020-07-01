@@ -204,7 +204,24 @@ app.delete('/api/cart/:cartItemId', (req, res, next) => {
         res.status(200).json(result.rows);
       }
     })
-    .catch(err => console.error(err));
+    .catch(err => next(err));
+});
+
+app.get('/api/cart/quantity', (req, res, next) => {
+  const getCartQuantity = `
+      select  "p"."productId",
+              "p"."name",
+              "p"."price",
+              "p"."itemNum",
+              count("p"."productId")
+        from  "products" as "p"
+        join  "cartItems" as "c" using ("productId")
+       where  "c"."cartId" = 37
+    group by  "p"."productId"
+  `;
+  db.query(getCartQuantity)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {
