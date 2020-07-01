@@ -216,10 +216,11 @@ app.get('/api/cart/quantity', (req, res, next) => {
               count("p"."productId")
         from  "products" as "p"
         join  "cartItems" as "c" using ("productId")
-       where  "c"."cartId" = 37
+       where  "c"."cartId" = $1
     group by  "p"."productId"
   `;
-  db.query(getCartQuantity)
+  const cartId = [req.session.cartId];
+  db.query(getCartQuantity, cartId)
     .then(result => res.status(200).json(result.rows))
     .catch(err => next(err));
 });

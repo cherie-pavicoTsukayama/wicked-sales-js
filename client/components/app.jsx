@@ -20,7 +20,8 @@ export default class App extends React.Component {
       cart: [],
       hide: '',
       product: {},
-      toast: 'display-none'
+      toast: 'display-none',
+      cartQuantity: []
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
@@ -88,10 +89,16 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    fetch('/api/cart')
-      .then(res => res.json())
-      .then(data => this.setState({ cart: data }))
-      .catch(err => console.error(err));
+    Promise.all([
+      fetch('/api/cart')
+        .then(res => res.json()),
+      fetch('/api/cart/quantity')
+        .then(res => res.json())
+    ])
+      .then(data => this.setState({
+        cart: data[0],
+        cartQuantity: data[1]
+      }));
   }
 
   addToCart(product, quantity) {
