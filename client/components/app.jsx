@@ -77,7 +77,7 @@ export default class App extends React.Component {
       );
     }
     if (view === 'cart') {
-      return <CartSummary items={this.state.cart} setView={this.setView} deleteItem={this.deleteItem}/>;
+      return <CartSummary items={this.state.cartQuantity} setView={this.setView} deleteItem={this.deleteItem}/>;
     }
     if (view === 'checkout') {
       return <CheckoutForm

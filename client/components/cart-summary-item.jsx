@@ -24,12 +24,13 @@ export default function CartSummaryItem(item) {
         </div>
         <div className="col-sm-2">
           <p className="font-weight-bold m-0">{item.product.name}</p>
-          <p className="text-muted cart-item-number">{item.product.itemNum}</p>
+          <p className="text-muted cart-item-number">Item# {item.product.itemNum}</p>
+          <p className="text-muted cart-item-number">QTY: {item.product.count}</p>
           <p className="font-weight-bold">{convertedPrice}</p>
         </div>
         <div className="d-flex col-sm-8 align-items-center justify-content-center">
           <div className="col-12 d-flex justify-content-center">
-            <Quantity />
+            <Quantity quantity={ item.product.count }/>
             <button className="btn" onClick={() => item.deleteItem(item.product.productId)}>
               <i className="far fa-trash-alt col-2"></i>
             </button>
