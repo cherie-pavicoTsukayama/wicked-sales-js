@@ -66,6 +66,10 @@ export default class CartSummary extends React.Component {
     this.props.setView('checkout', {});
   }
 
+  componentDidMount() {
+    this.props.getCartItems();
+  }
+
   render() {
     return (
       <div className="container">

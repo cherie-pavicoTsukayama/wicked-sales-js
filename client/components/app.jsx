@@ -77,7 +77,11 @@ export default class App extends React.Component {
       );
     }
     if (view === 'cart') {
-      return <CartSummary items={this.state.cartQuantity} setView={this.setView} deleteItem={this.deleteItem}/>;
+      return <CartSummary
+        items={this.state.cartQuantity}
+        setView={this.setView}
+        deleteItem={this.deleteItem}
+        getCartItems={this.getCartItems} />;
     }
     if (view === 'checkout') {
       return <CheckoutForm
@@ -95,10 +99,13 @@ export default class App extends React.Component {
       fetch('/api/cart/quantity')
         .then(res => res.json())
     ])
-      .then(data => this.setState({
-        cart: data[0],
-        cartQuantity: data[1]
-      }));
+      .then(data => {
+        this.setState({
+          cartQuantity: data[1],
+          cart: data[0]
+        });
+      })
+      .catch(err => console.error(err));
   }
 
   addToCart(product, quantity) {
