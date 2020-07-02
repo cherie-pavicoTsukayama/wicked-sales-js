@@ -146,11 +146,11 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  deleteItem(cartItemId) {
+  deleteItem(productId) {
     const remove = {
       method: 'DELETE'
     };
-    fetch(`api/cart/${cartItemId}`, remove)
+    fetch(`api/cart/${productId}`, remove)
       .then(res => res.json())
       .then(() => this.getCartItems())
       .catch(err => console.error(err));

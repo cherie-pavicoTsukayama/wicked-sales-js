@@ -30,7 +30,7 @@ export default function CartSummaryItem(item) {
         <div className="d-flex col-sm-8 align-items-center justify-content-center">
           <div className="col-12 d-flex justify-content-center">
             <Quantity />
-            <button className="btn" onClick={() => item.deleteItem(item.product.cartItemId)}>
+            <button className="btn" onClick={() => item.deleteItem(item.product.productId)}>
               <i className="far fa-trash-alt col-2"></i>
             </button>
           </div>
