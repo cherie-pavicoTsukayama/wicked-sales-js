@@ -78,11 +78,11 @@ export default class App extends React.Component {
     }
     if (view === 'cart') {
       return <CartSummary
-        items={this.state.cart}
+        items={this.state.cartQuantity}
         setView={this.setView}
         deleteItem={this.deleteItem}
         getCartItems={this.getCartItems}
-        cart={this.state.cart}
+        cartItemQuantities={this.state.cartQuantity}
         addToCart={this.addToCart}/>;
     }
     if (view === 'checkout') {
@@ -95,11 +95,16 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    fetch('/api/cart')
-      .then(res => res.json())
+    Promise.all([
+      fetch('/api/cart')
+        .then(res => res.json()),
+      fetch('/api/cart/quantity')
+        .then(res => res.json())
+    ])
       .then(data => {
         this.setState({
-          cart: data
+          cart: data[0],
+          cartQuantity: data[1]
         });
       })
       .catch(err => console.error(err));

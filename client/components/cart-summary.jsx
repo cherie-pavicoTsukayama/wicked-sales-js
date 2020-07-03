@@ -5,7 +5,7 @@ export default class CartSummary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cartQuantities: this.props.items
+      cartItemsQuantities: this.props.cartItemQuantities
     };
     this.createSummaryCards = this.createSummaryCards.bind(this);
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
@@ -31,7 +31,7 @@ export default class CartSummary extends React.Component {
           product={ item }
           onClick={ this.handleClick }
           deleteItem={ this.props.deleteItem }
-          cartQuantities={ this.state.cartQuantities}
+          cartQuantities={this.state.cartItemsQuantities}
           handleClickIncrease={ this.handleClickQuantityIncrease }/>;
       });
       return cartSummary;

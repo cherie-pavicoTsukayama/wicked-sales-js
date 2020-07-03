@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Quantity from './quantity-control';
 export default function CartSummaryItem(item) {
   const price = '' + item.product.price;
   const image = item.product.image.split(',');
@@ -29,6 +29,7 @@ export default function CartSummaryItem(item) {
         </div>
         <div className="d-flex col-sm-8 align-items-center justify-content-center">
           <div className="col-12 d-flex justify-content-center">
+            <Quantity quantity={item.product.count}/>
             <button className="btn" onClick={() => item.deleteItem(item.product.cartItemId)}>
               <i className="far fa-trash-alt col-2"></i>
             </button>
