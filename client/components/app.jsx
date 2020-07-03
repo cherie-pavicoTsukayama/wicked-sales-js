@@ -78,10 +78,12 @@ export default class App extends React.Component {
     }
     if (view === 'cart') {
       return <CartSummary
-        items={this.state.cartQuantity}
+        items={this.state.cart}
         setView={this.setView}
         deleteItem={this.deleteItem}
-        getCartItems={this.getCartItems} />;
+        getCartItems={this.getCartItems}
+        cart={this.state.cart}
+        addToCart={this.addToCart}/>;
     }
     if (view === 'checkout') {
       return <CheckoutForm
@@ -93,16 +95,11 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    Promise.all([
-      fetch('/api/cart')
-        .then(res => res.json()),
-      fetch('/api/cart/quantity')
-        .then(res => res.json())
-    ])
+    fetch('/api/cart')
+      .then(res => res.json())
       .then(data => {
         this.setState({
-          cartQuantity: data[1],
-          cart: data[0]
+          cart: data
         });
       })
       .catch(err => console.error(err));
@@ -153,13 +150,21 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  deleteItem(productId) {
+  deleteItem(cartItemId) {
     const remove = {
       method: 'DELETE'
     };
-    fetch(`api/cart/${productId}`, remove)
+    fetch(`api/cart/${cartItemId}`, remove)
       .then(res => res.json())
-      .then(() => this.getCartItems())
+      .then(data => {
+        const newCart = this.state.cart.slice();
+        for (let i = 0; i < newCart.length; i++) {
+          if (data[0].cartItemId === newCart[i].cartItemId) {
+            newCart.splice(i, 1);
+          }
+        }
+        this.setState({ cart: newCart });
+      })
       .catch(err => console.error(err));
   }
 

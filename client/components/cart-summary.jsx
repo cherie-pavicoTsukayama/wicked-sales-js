@@ -4,6 +4,9 @@ import CartSummaryItem from './cart-summary-item';
 export default class CartSummary extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      cartQuantities: this.props.items
+    };
     this.createSummaryCards = this.createSummaryCards.bind(this);
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.makeCheckoutButton = this.makeCheckoutButton.bind(this);
@@ -22,12 +25,14 @@ export default class CartSummary extends React.Component {
         </div>
       );
     } else {
-      const cartSummary = this.props.items.map(item => {
+      const cartSummary = this.props.items.map((item, index) => {
         return <CartSummaryItem
-          key={item.itemNum}
-          product={item}
-          onClick={this.handleClick}
-          deleteItem={this.props.deleteItem}/>;
+          key={ index }
+          product={ item }
+          onClick={ this.handleClick }
+          deleteItem={ this.props.deleteItem }
+          cartQuantities={ this.state.cartQuantities}
+          handleClickIncrease={ this.handleClickQuantityIncrease }/>;
       });
       return cartSummary;
     }
@@ -57,7 +62,7 @@ export default class CartSummary extends React.Component {
   makeCheckoutButton() {
     if (this.props.items.length !== 0) {
       return (
-        <button type="button" className="btn btn-primary" onClick={this.handleClickCheckOutButton}>Checkout</button>
+        <button type="button" className="btn btn-primary" onClick={ this.handleClickCheckOutButton }>Checkout</button>
       );
     }
   }

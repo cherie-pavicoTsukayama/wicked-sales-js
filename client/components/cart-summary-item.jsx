@@ -1,6 +1,4 @@
 import React from 'react';
-import Quantity from './quantity-control';
-// import { ProgressPlugin } from 'webpack';
 
 export default function CartSummaryItem(item) {
   const price = '' + item.product.price;
@@ -16,6 +14,7 @@ export default function CartSummaryItem(item) {
   } else {
     convertedPrice += (price.slice(0, 2) + '.' + price.slice(2, 4));
   }
+
   return (
     <div className="card mb-5">
       <div className="row no-gutters p-2 pt-3  d-flex justify-content-around shadow-sm align-items-center">
@@ -30,8 +29,7 @@ export default function CartSummaryItem(item) {
         </div>
         <div className="d-flex col-sm-8 align-items-center justify-content-center">
           <div className="col-12 d-flex justify-content-center">
-            <Quantity quantity={ item.product.count }/>
-            <button className="btn" onClick={() => item.deleteItem(item.product.productId)}>
+            <button className="btn" onClick={() => item.deleteItem(item.product.cartItemId)}>
               <i className="far fa-trash-alt col-2"></i>
             </button>
           </div>
