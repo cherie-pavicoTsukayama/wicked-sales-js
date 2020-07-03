@@ -62,7 +62,7 @@ export default class CartSummaryItem extends React.Component {
           <div className="col-sm-2">
             <p className="font-weight-bold m-0">{this.props.product.name}</p>
             <p className="text-muted cart-item-number">Item# {this.props.product.itemNum}</p>
-            <p className="text-muted cart-item-number">QTY: {this.props.product.count}</p>
+            <p className="text-muted cart-item-number">QTY: {this.state.quantity}</p>
             <p className="font-weight-bold">{this.convertedPrice()}</p>
           </div>
           <div className="d-flex col-sm-8 align-items-center justify-content-center">
