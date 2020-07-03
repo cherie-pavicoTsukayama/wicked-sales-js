@@ -45,7 +45,7 @@ export default class CartSummaryItem extends React.Component {
     this.setState({
       quantity: newQuantity
     });
-
+    this.props.addToCart(productId, 1);
   }
 
   componentDidMount() {
@@ -71,7 +71,7 @@ export default class CartSummaryItem extends React.Component {
                 quantity={this.state.quantity}
                 handleClickIncrease={this.handleClickIncreaseQuantity}
                 productId={this.props.product.productId}/>
-              <button className="btn" onClick={() => this.props.deleteItem(this.props.product.cartItemId)}>
+              <button className="btn" onClick={() => this.props.deleteItem(this.props.product.productId)}>
                 <i className="far fa-trash-alt col-2"></i>
               </button>
             </div>

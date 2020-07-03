@@ -82,7 +82,7 @@ export default class App extends React.Component {
         setView={this.setView}
         deleteItem={this.deleteItem}
         getCartItems={this.getCartItems}
-        cartItemQuantities={this.state.cartQuantity}
+        cartItems={this.state.cart}
         addToCart={this.addToCart}/>;
     }
     if (view === 'checkout') {
@@ -155,20 +155,29 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  deleteItem(cartItemId) {
+  deleteItem(productId) {
     const remove = {
       method: 'DELETE'
     };
-    fetch(`api/cart/${cartItemId}`, remove)
+    fetch(`/api/cart/${productId}`, remove)
       .then(res => res.json())
       .then(data => {
         const newCart = this.state.cart.slice();
         for (let i = 0; i < newCart.length; i++) {
-          if (data[0].cartItemId === newCart[i].cartItemId) {
+          if (data[0].productId === newCart[i].productId) {
             newCart.splice(i, 1);
           }
         }
-        this.setState({ cart: newCart });
+        const newQuantityArray = this.state.cartQuantity.slice();
+        for (let i = 0; i < newQuantityArray.length; i++) {
+          if (data[0].productId === newQuantityArray[i].productId) {
+            newQuantityArray.splice(i, 1);
+          }
+        }
+        this.setState({
+          cart: newCart,
+          cartQuantity: newQuantityArray
+        });
       })
       .catch(err => console.error(err));
   }

@@ -180,9 +180,9 @@ app.post('/api/orders', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/cart/:cartItemId', (req, res, next) => {
-  const { cartItemId } = req.params;
-  if (isNaN(cartItemId)) {
+app.delete('/api/cart/:productId', (req, res, next) => {
+  const { productId } = req.params;
+  if (isNaN(productId)) {
     return res.status(400).json({
       error: 'Product Id or Cart Item Id must be a valid number'
     });
@@ -190,15 +190,15 @@ app.delete('/api/cart/:cartItemId', (req, res, next) => {
   const sql = `
     delete from "cartItems"
         where "cartId" = $1
-          AND "cartItemId" = $2
+          AND "productId" = $2
     returning *
     `;
-  const value = [req.session.cartId, cartItemId];
+  const value = [req.session.cartId, productId];
   db.query(sql, value)
     .then(result => {
       if (!result.rows[0]) {
         res.status(404).json({
-          error: 'Cart item does not exist.'
+          error: 'Product Id does not exist.'
         });
       } else {
         res.status(200).json(result.rows);
