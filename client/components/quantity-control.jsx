@@ -20,7 +20,7 @@ export default function Quantity(props) {
       </div>
       <button
         className="border col-2 d-flex justify-content-center white-bg px-4"
-        onClick={ () => props.handleClickIncrease(props.productId) }>
+        onClick={ () => props.handleClickIncrease(props.product) }>
         <i className="fas fa-plus fa-sm align-self-center"></i>
       </button>
     </div>

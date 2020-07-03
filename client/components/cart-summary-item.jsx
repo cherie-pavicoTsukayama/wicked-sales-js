@@ -4,7 +4,8 @@ export default class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: null
+      quantity: null,
+      product: {}
     };
     this.convertedPrice = this.convertedPrice.bind(this);
     this.convertImage = this.convertImage.bind(this);
@@ -38,18 +39,23 @@ export default class CartSummaryItem extends React.Component {
     return convertedPrice;
   }
 
-  handleClickIncreaseQuantity(productId) {
-    // console.log('clicked, productId:', productId);
+  handleClickIncreaseQuantity(product) {
     const quantity = this.state.quantity;
     const newQuantity = parseInt(quantity) + 1;
     this.setState({
       quantity: newQuantity
     });
-    this.props.addToCart(productId, 1);
+    this.props.addToCart(product, 1);
   }
 
   componentDidMount() {
     this.setQuantity();
+    fetch(`/api/products/${this.props.product.productId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ product: data });
+      })
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -70,7 +76,7 @@ export default class CartSummaryItem extends React.Component {
               <Quantity
                 quantity={this.state.quantity}
                 handleClickIncrease={this.handleClickIncreaseQuantity}
-                productId={this.props.product.productId}/>
+                product={this.state.product}/>
               <button className="btn" onClick={() => this.props.deleteItem(this.props.product.productId)}>
                 <i className="far fa-trash-alt col-2"></i>
               </button>
