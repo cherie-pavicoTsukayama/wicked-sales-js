@@ -4,13 +4,14 @@ import CartSummaryItem from './cart-summary-item';
 export default class CartSummary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cartItemsQuantities: this.props.cartItemQuantities
-    };
+    // this.state = {
+    //   cartItemsQuantities: []
+    // };
     this.createSummaryCards = this.createSummaryCards.bind(this);
     this.handleClickBackToCatalog = this.handleClickBackToCatalog.bind(this);
     this.makeCheckoutButton = this.makeCheckoutButton.bind(this);
     this.handleClickCheckOutButton = this.handleClickCheckOutButton.bind(this);
+    // this.handleClickIncreaseQuantity = this.handleClickIncreaseQuantity.bind(this);
   }
 
   handleClickBackToCatalog() {
@@ -31,8 +32,8 @@ export default class CartSummary extends React.Component {
           product={ item }
           onClick={ this.handleClick }
           deleteItem={ this.props.deleteItem }
-          cartQuantities={this.state.cartItemsQuantities}
-          handleClickIncrease={ this.handleClickQuantityIncrease }/>;
+          // cartQuantities={this.state.cartItemsQuantities}
+          handleClickIncrease={ this.handleClickIncreaseQuantity }/>;
       });
       return cartSummary;
     }
