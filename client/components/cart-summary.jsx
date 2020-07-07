@@ -92,7 +92,6 @@ export default class CartSummary extends React.Component {
           <div>{ this.makeCheckoutButton() }</div>
         </div>
       </div>
-
     );
   }
 }
