@@ -4,23 +4,16 @@ export default class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: null,
       product: {}
     };
     this.convertedPrice = this.convertedPrice.bind(this);
     this.convertImage = this.convertImage.bind(this);
-    this.setQuantity = this.setQuantity.bind(this);
-    this.handleClickIncreaseQuantity = this.handleClickIncreaseQuantity.bind(this);
   }
 
   convertImage() {
     const imageArray = this.props.product.image.split(',');
     return imageArray[0];
 
-  }
-
-  setQuantity() {
-    this.setState({ quantity: this.props.product.count });
   }
 
   convertedPrice() {
@@ -39,17 +32,8 @@ export default class CartSummaryItem extends React.Component {
     return convertedPrice;
   }
 
-  handleClickIncreaseQuantity(product) {
-    const quantity = this.props.product.count;
-    const newQuantity = parseInt(quantity) + 1;
-    this.setState({
-      quantity: newQuantity
-    });
-    this.props.addToCart(product, 1);
-  }
-
   componentDidMount() {
-    this.setQuantity();
+
     fetch(`/api/products/${this.props.product.productId}`)
       .then(res => res.json())
       .then(data => {
@@ -68,14 +52,14 @@ export default class CartSummaryItem extends React.Component {
           <div className="col-sm-2">
             <p className="font-weight-bold m-0">{this.props.product.name}</p>
             <p className="text-muted cart-item-number">Item# {this.props.product.itemNum}</p>
-            <p className="text-muted cart-item-number">QTY: {this.state.quantity}</p>
+            <p className="text-muted cart-item-number">QTY: {this.props.product.count}</p>
             <p className="font-weight-bold">{this.convertedPrice()}</p>
           </div>
           <div className="d-flex col-sm-8 align-items-center justify-content-center">
             <div className="col-12 d-flex justify-content-center">
               <Quantity
-                quantity={this.state.quantity}
-                handleClickIncrease={this.handleClickIncreaseQuantity}
+                quantity={this.props.product.count}
+                handleClickIncrease={this.props.handleClickIncreaseQuantity}
                 product={this.state.product}/>
               <button className="btn" onClick={() => this.props.deleteItem(this.props.product.productId)}>
                 <i className="far fa-trash-alt col-2"></i>

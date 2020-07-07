@@ -30,6 +30,8 @@ export default class App extends React.Component {
     this.placeOrder = this.placeOrder.bind(this);
     this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.handleClickIncreaseQuantity = this.handleClickIncreaseQuantity.bind(this);
+
   }
 
   setView(name, productId) {
@@ -83,7 +85,8 @@ export default class App extends React.Component {
         deleteItem={this.deleteItem}
         getCartItems={this.getCartItems}
         cartItems={this.state.cart}
-        addToCart={this.addToCart}/>;
+        addToCart={this.addToCart}
+        handleClickIncreaseQuantity={this.handleClickIncreaseQuantity} />;
     }
     if (view === 'checkout') {
       return <CheckoutForm
@@ -184,6 +187,20 @@ export default class App extends React.Component {
         });
       })
       .catch(err => console.error(err));
+  }
+
+  handleClickIncreaseQuantity(product) {
+    // console.log('clicked:', product);
+    for (let i = 0; i < this.state.cartQuantity.length; i++) {
+      if (product.productId === this.state.cartQuantity[i].productId) {
+        const quantity = parseInt(this.state.cartQuantity[i].count) + 1;
+        const newCartQuantity = this.state.cartQuantity.slice();
+        newCartQuantity[i].count = quantity;
+        this.setState({ cartQuantity: newCartQuantity });
+        break;
+      }
+    }
+    this.addToCart(product, 1);
   }
 
   componentDidMount() {
