@@ -60,7 +60,11 @@ export default class CartSummary extends React.Component {
   makeCheckoutButton() {
     if (this.props.items.length !== 0) {
       return (
-        <button type="button" className="btn btn-primary" onClick={ this.handleClickCheckOutButton }>Checkout</button>
+        <button type="button"
+          className="btn btn-primary"
+          onClick={ this.handleClickCheckOutButton }>
+          Checkout
+        </button>
       );
     }
   }

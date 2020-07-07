@@ -1,5 +1,4 @@
 import React from 'react';
-import Quantity from './quantity-control';
 export default class CartSummaryItem extends React.Component {
   constructor(props) {
     super(props);
@@ -57,10 +56,20 @@ export default class CartSummaryItem extends React.Component {
           </div>
           <div className="d-flex col-sm-8 align-items-center justify-content-center">
             <div className="col-12 d-flex justify-content-center">
-              <Quantity
-                quantity={this.props.product.count}
-                handleClickIncrease={this.props.handleClickIncreaseQuantity}
-                product={this.state.product}/>
+              <div className="d-flex col-8">
+                <button
+                  className={'border col-2 d-flex justify-content-center white-bg px-4' }>
+                  <i className="fas fa-minus fa-sm align-self-center"></i>
+                </button>
+                <div className="border-top border-bottom col d-flex justify-content-center">
+                  <h5 className="text-center align-self-center m-0 py-2">{this.props.product.count}</h5>
+                </div>
+                <button
+                  className="border col-2 d-flex justify-content-center white-bg px-4"
+                  onClick={() => this.props.handleClickIncreaseQuantity(this.props.product)}>
+                  <i className="fas fa-plus fa-sm align-self-center"></i>
+                </button>
+              </div>
               <button className="btn" onClick={() => this.props.deleteItem(this.props.product.productId)}>
                 <i className="far fa-trash-alt col-2"></i>
               </button>
