@@ -162,10 +162,14 @@ export default class App extends React.Component {
     fetch(`/api/cart/${productId}`, remove)
       .then(res => res.json())
       .then(data => {
-        const newCart = this.state.cart.slice();
-        for (let i = 0; i < newCart.length; i++) {
-          if (data[0].productId === newCart[i].productId) {
-            newCart.splice(i, 1);
+        const currentCart = this.state.cart.slice();
+        const newCart = [];
+        while (currentCart.length > 0) {
+          if (data[0].productId === currentCart[0].productId) {
+            currentCart.splice(0, 1);
+          } else {
+            newCart.push(currentCart[0]);
+            currentCart.splice(0, 1);
           }
         }
         const newQuantityArray = this.state.cartQuantity.slice();

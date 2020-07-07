@@ -40,7 +40,7 @@ export default class CartSummaryItem extends React.Component {
   }
 
   handleClickIncreaseQuantity(product) {
-    const quantity = this.state.quantity;
+    const quantity = this.props.product.count;
     const newQuantity = parseInt(quantity) + 1;
     this.setState({
       quantity: newQuantity

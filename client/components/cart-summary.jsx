@@ -26,11 +26,10 @@ export default class CartSummary extends React.Component {
         return <CartSummaryItem
           key={ index }
           product={ item }
-          onClick={ this.handleClick }
+          quantities={ this.props.items }
           deleteItem={ this.props.deleteItem }
           addToCart={this.props.addToCart}
-          cartItems={this.props.cartItems}
-          handleClickIncrease={ this.handleClickIncreaseQuantity }/>;
+          cartItems={this.props.cartItems} />;
       });
       return cartSummary;
     }
