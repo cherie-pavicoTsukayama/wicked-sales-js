@@ -7,6 +7,7 @@ export default class CartSummaryItem extends React.Component {
     };
     this.convertedPrice = this.convertedPrice.bind(this);
     this.convertImage = this.convertImage.bind(this);
+    this.totalItemPrice = this.totalItemPrice.bind(this);
   }
 
   convertImage() {
@@ -31,6 +32,12 @@ export default class CartSummaryItem extends React.Component {
     return convertedPrice;
   }
 
+  totalItemPrice() {
+    const singlePrice = parseFloat(this.convertedPrice().slice(1), 1);
+    const totalItemPrice = (singlePrice * this.props.product.count).toFixed(2);
+    return '$' + totalItemPrice;
+  }
+
   componentDidMount() {
 
     fetch(`/api/products/${this.props.product.productId}`)
@@ -45,7 +52,7 @@ export default class CartSummaryItem extends React.Component {
     return (
       <div className="card mb-5">
         <div className="row no-gutters p-2 pt-3  d-flex justify-content-around shadow-sm align-items-center">
-          <div className="col-sm-1 mr-3">
+          <div className="col-sm-2 mr-3">
             <img className="cart-image" src={this.convertImage()} alt="" />
           </div>
           <div className="col-sm-2">
@@ -54,9 +61,9 @@ export default class CartSummaryItem extends React.Component {
             <p className="text-muted cart-item-number">QTY: {this.props.product.count}</p>
             <p className="font-weight-bold">{this.convertedPrice()}</p>
           </div>
-          <div className="d-flex col-sm-8 align-items-center justify-content-center">
+          <div className="d-flex col-sm-6 align-items-center justify-content-center">
             <div className="col-12 d-flex justify-content-center">
-              <div className="d-flex col-8">
+              <div className="d-flex col-10">
                 <button
                   className={'border col-2 d-flex justify-content-center white-bg px-4' }
                   onClick={() => this.props.handleClickDecreaseQuantity(this.props.product.productId)}>
@@ -75,6 +82,9 @@ export default class CartSummaryItem extends React.Component {
                 <i className="far fa-trash-alt col-2"></i>
               </button>
             </div>
+          </div>
+          <div className="d-flex justify-content-center col">
+            <h4 className="text-center">{this.totalItemPrice()}</h4>
           </div>
         </div>
       </div>
