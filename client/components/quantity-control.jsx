@@ -9,18 +9,18 @@ export default function Quantity(props) {
   }
 
   return (
-    <div className="d-flex">
+    <div className="d-flex col-8">
       <button
-        className={`border col-2 d-flex justify-content-center white-bg ${muted}`}
+        className={`border col-2 d-flex justify-content-center white-bg px-4 ${muted}`}
         onClick={props.handleClickDecrease} disabled={ disable }>
         <i className="fas fa-minus fa-sm align-self-center"></i>
       </button>
-      <div className="border-top border-bottom col-8 d-flex justify-content-center">
-        <h5 className="text-center align-self-center m-0">{ props.quantity }</h5>
+      <div className="border-top border-bottom col d-flex justify-content-center">
+        <h5 className="text-center align-self-center m-0 py-2">{ props.quantity }</h5>
       </div>
       <button
-        className="border col-2 d-flex justify-content-center white-bg"
-        onClick={ props.handleClickIncrease }>
+        className="border col-2 d-flex justify-content-center white-bg px-4"
+        onClick={ () => props.handleClickIncrease(props.product) }>
         <i className="fas fa-plus fa-sm align-self-center"></i>
       </button>
     </div>

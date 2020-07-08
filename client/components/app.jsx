@@ -14,13 +14,14 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'catalog',
+        name: 'cart',
         params: {}
       },
       cart: [],
       hide: '',
       product: {},
-      toast: 'display-none'
+      toast: 'display-none',
+      cartQuantity: []
     };
     this.setView = this.setView.bind(this);
     this.display = this.display.bind(this);
@@ -29,6 +30,8 @@ export default class App extends React.Component {
     this.placeOrder = this.placeOrder.bind(this);
     this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.handleClickIncreaseQuantity = this.handleClickIncreaseQuantity.bind(this);
+    this.handleClickDecreaseQuantity = this.handleClickDecreaseQuantity.bind(this);
   }
 
   setView(name, productId) {
@@ -76,7 +79,15 @@ export default class App extends React.Component {
       );
     }
     if (view === 'cart') {
-      return <CartSummary items={this.state.cart} setView={this.setView} deleteItem={this.deleteItem}/>;
+      return <CartSummary
+        items={this.state.cartQuantity}
+        setView={this.setView}
+        deleteItem={this.deleteItem}
+        getCartItems={this.getCartItems}
+        cartItems={this.state.cart}
+        addToCart={this.addToCart}
+        handleClickIncreaseQuantity={this.handleClickIncreaseQuantity}
+        handleClickDecreaseQuantity={this.handleClickDecreaseQuantity} />;
     }
     if (view === 'checkout') {
       return <CheckoutForm
@@ -88,9 +99,18 @@ export default class App extends React.Component {
   }
 
   getCartItems() {
-    fetch('/api/cart')
-      .then(res => res.json())
-      .then(data => this.setState({ cart: data }))
+    Promise.all([
+      fetch('/api/cart')
+        .then(res => res.json()),
+      fetch('/api/cart/quantity')
+        .then(res => res.json())
+    ])
+      .then(data => {
+        this.setState({
+          cart: data[0],
+          cartQuantity: data[1]
+        });
+      })
       .catch(err => console.error(err));
   }
 
@@ -139,14 +159,78 @@ export default class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  deleteItem(cartItemId) {
+  deleteItem(productId) {
     const remove = {
       method: 'DELETE'
     };
-    fetch(`api/cart/${cartItemId}`, remove)
+    fetch(`/api/cart/${productId}`, remove)
       .then(res => res.json())
-      .then(() => this.getCartItems())
+      .then(data => {
+        const currentCart = this.state.cart.slice();
+        const newCart = [];
+        while (currentCart.length > 0) {
+          if (data[0].productId === currentCart[0].productId) {
+            currentCart.splice(0, 1);
+          } else {
+            newCart.push(currentCart[0]);
+            currentCart.splice(0, 1);
+          }
+        }
+        const newQuantityArray = this.state.cartQuantity.slice();
+        for (let i = 0; i < newQuantityArray.length; i++) {
+          if (data[0].productId === newQuantityArray[i].productId) {
+            newQuantityArray.splice(i, 1);
+          }
+        }
+        this.setState({
+          cart: newCart,
+          cartQuantity: newQuantityArray
+        });
+      })
       .catch(err => console.error(err));
+  }
+
+  handleClickIncreaseQuantity(product) {
+    for (let i = 0; i < this.state.cartQuantity.length; i++) {
+      if (product.productId === this.state.cartQuantity[i].productId) {
+        const quantity = parseInt(this.state.cartQuantity[i].count) + 1;
+        const newCartQuantity = this.state.cartQuantity.slice();
+        newCartQuantity[i].count = quantity;
+        this.setState({ cartQuantity: newCartQuantity });
+        break;
+      }
+    }
+    this.addToCart(product, 1);
+  }
+
+  handleClickDecreaseQuantity(productId) {
+    for (let i = 0; i < this.state.cartQuantity.length; i++) {
+      if (productId === this.state.cartQuantity[i].productId) {
+        const quantity = parseInt(this.state.cartQuantity[i].count) - 1;
+        const newCartQuantity = this.state.cartQuantity.slice();
+        newCartQuantity[i].count = quantity;
+        this.setState({ cartQuantity: newCartQuantity });
+        break;
+      }
+    }
+    for (let i = 0; i < this.state.cart.length; i++) {
+      if (productId === this.state.cart[i].productId) {
+        const cartItemId = this.state.cart[i].cartItemId;
+        const remove = {
+          method: 'DELETE'
+        };
+        fetch(`/api/cartItem/${cartItemId}`, remove)
+          .then(() => {
+            const newCart = this.state.cart.slice();
+            newCart.splice([i], 1);
+            this.setState({
+              cart: newCart
+            });
+          })
+          .catch(err => console.error(err));
+        break;
+      }
+    }
   }
 
   componentDidMount() {

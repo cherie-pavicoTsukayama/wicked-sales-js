@@ -180,11 +180,38 @@ app.post('/api/orders', (req, res, next) => {
     .catch(err => next(err));
 });
 
-app.delete('/api/cart/:cartItemId', (req, res, next) => {
+app.delete('/api/cart/:productId', (req, res, next) => {
+  const { productId } = req.params;
+  if (isNaN(productId)) {
+    return res.status(400).json({
+      error: 'Product Id must be a valid number'
+    });
+  }
+  const sql = `
+    delete from "cartItems"
+        where "cartId" = $1
+          AND "productId" = $2
+    returning *
+    `;
+  const value = [req.session.cartId, productId];
+  db.query(sql, value)
+    .then(result => {
+      if (!result.rows[0]) {
+        res.status(404).json({
+          error: 'Product Id does not exist.'
+        });
+      } else {
+        res.status(200).json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.delete('/api/cartItem/:cartItemId', (req, res, next) => {
   const { cartItemId } = req.params;
   if (isNaN(cartItemId)) {
     return res.status(400).json({
-      error: 'Product Id or Cart Item Id must be a valid number'
+      error: 'Cart Item Id must be a valid number'
     });
   }
   const sql = `
@@ -195,8 +222,35 @@ app.delete('/api/cart/:cartItemId', (req, res, next) => {
     `;
   const value = [req.session.cartId, cartItemId];
   db.query(sql, value)
-    .then(result => res.json(result.rows))
-    .catch(err => console.error(err));
+    .then(result => {
+      if (!result.rows[0]) {
+        res.status(404).json({
+          error: 'Cart Item Id does not exist.'
+        });
+      } else {
+        res.status(200).json(result.rows);
+      }
+    })
+    .catch(err => next(err));
+});
+
+app.get('/api/cart/quantity', (req, res, next) => {
+  const getCartQuantity = `
+      select  "p"."productId",
+              "p"."name",
+              "p"."price",
+              "p"."itemNum",
+              "p"."image",
+              count("p"."productId")
+        from  "products" as "p"
+        join  "cartItems" as "c" using ("productId")
+       where  "c"."cartId" = $1
+    group by  "p"."productId"
+  `;
+  const cartId = [req.session.cartId];
+  db.query(getCartQuantity, cartId)
+    .then(result => res.status(200).json(result.rows))
+    .catch(err => next(err));
 });
 
 app.use('/api', (req, res, next) => {

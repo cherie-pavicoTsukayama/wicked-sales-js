@@ -22,12 +22,16 @@ export default class CartSummary extends React.Component {
         </div>
       );
     } else {
-      const cartSummary = this.props.items.map(item => {
+      const cartSummary = this.props.items.map((item, index) => {
         return <CartSummaryItem
-          key={item.cartItemId}
-          product={item}
-          onClick={this.handleClick}
-          deleteItem={this.props.deleteItem}/>;
+          key={ index }
+          product={ item }
+          quantities={ this.props.items }
+          deleteItem={ this.props.deleteItem }
+          addToCart={this.props.addToCart}
+          cartItems={this.props.cartItems}
+          handleClickIncreaseQuantity={this.props.handleClickIncreaseQuantity}
+          handleClickDecreaseQuantity={ this.props.handleClickDecreaseQuantity }/>;
       });
       return cartSummary;
     }
@@ -42,7 +46,7 @@ export default class CartSummary extends React.Component {
     } else {
       let total = 0;
       for (let i = 0; i < items.length; i++) {
-        total += items[i].price;
+        total = total + (items[i].count * items[i].price);
       }
       const stringTotal = total.toString();
 
@@ -57,13 +61,21 @@ export default class CartSummary extends React.Component {
   makeCheckoutButton() {
     if (this.props.items.length !== 0) {
       return (
-        <button type="button" className="btn btn-primary" onClick={this.handleClickCheckOutButton}>Checkout</button>
+        <button type="button"
+          className="btn btn-primary"
+          onClick={ this.handleClickCheckOutButton }>
+          Checkout
+        </button>
       );
     }
   }
 
   handleClickCheckOutButton() {
     this.props.setView('checkout', {});
+  }
+
+  componentDidMount() {
+    this.props.getCartItems();
   }
 
   render() {
@@ -81,7 +93,6 @@ export default class CartSummary extends React.Component {
           <div>{ this.makeCheckoutButton() }</div>
         </div>
       </div>
-
     );
   }
 }
