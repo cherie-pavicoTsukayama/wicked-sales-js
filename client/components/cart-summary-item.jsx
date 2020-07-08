@@ -58,7 +58,8 @@ export default class CartSummaryItem extends React.Component {
             <div className="col-12 d-flex justify-content-center">
               <div className="d-flex col-8">
                 <button
-                  className={'border col-2 d-flex justify-content-center white-bg px-4' }>
+                  className={'border col-2 d-flex justify-content-center white-bg px-4' }
+                  onClick={() => this.props.handleClickDecreaseQuantity(this.props.product.productId)}>
                   <i className="fas fa-minus fa-sm align-self-center"></i>
                 </button>
                 <div className="border-top border-bottom col d-flex justify-content-center">

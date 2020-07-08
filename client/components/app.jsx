@@ -31,7 +31,7 @@ export default class App extends React.Component {
     this.handleCloseOpeningModal = this.handleCloseOpeningModal.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.handleClickIncreaseQuantity = this.handleClickIncreaseQuantity.bind(this);
-
+    this.handleClickDecreaseQuantity = this.handleClickDecreaseQuantity.bind(this);
   }
 
   setView(name, productId) {
@@ -86,7 +86,8 @@ export default class App extends React.Component {
         getCartItems={this.getCartItems}
         cartItems={this.state.cart}
         addToCart={this.addToCart}
-        handleClickIncreaseQuantity={this.handleClickIncreaseQuantity} />;
+        handleClickIncreaseQuantity={this.handleClickIncreaseQuantity}
+        handleClickDecreaseQuantity={this.handleClickDecreaseQuantity} />;
     }
     if (view === 'checkout') {
       return <CheckoutForm
@@ -190,7 +191,6 @@ export default class App extends React.Component {
   }
 
   handleClickIncreaseQuantity(product) {
-    // console.log('clicked:', product);
     for (let i = 0; i < this.state.cartQuantity.length; i++) {
       if (product.productId === this.state.cartQuantity[i].productId) {
         const quantity = parseInt(this.state.cartQuantity[i].count) + 1;
@@ -201,6 +201,36 @@ export default class App extends React.Component {
       }
     }
     this.addToCart(product, 1);
+  }
+
+  handleClickDecreaseQuantity(productId) {
+    for (let i = 0; i < this.state.cartQuantity.length; i++) {
+      if (productId === this.state.cartQuantity[i].productId) {
+        const quantity = parseInt(this.state.cartQuantity[i].count) - 1;
+        const newCartQuantity = this.state.cartQuantity.slice();
+        newCartQuantity[i].count = quantity;
+        this.setState({ cartQuantity: newCartQuantity });
+        break;
+      }
+    }
+    for (let i = 0; i < this.state.cart.length; i++) {
+      if (productId === this.state.cart[i].productId) {
+        const cartItemId = this.state.cart[i].cartItemId;
+        const remove = {
+          method: 'DELETE'
+        };
+        fetch(`/api/cartItem/${cartItemId}`, remove)
+          .then(() => {
+            const newCart = this.state.cart.slice();
+            newCart.splice([i], 1);
+            this.setState({
+              cart: newCart
+            });
+          })
+          .catch(err => console.error(err));
+        break;
+      }
+    }
   }
 
   componentDidMount() {

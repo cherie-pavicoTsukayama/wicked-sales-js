@@ -30,7 +30,8 @@ export default class CartSummary extends React.Component {
           deleteItem={ this.props.deleteItem }
           addToCart={this.props.addToCart}
           cartItems={this.props.cartItems}
-          handleClickIncreaseQuantity={this.props.handleClickIncreaseQuantity} />;
+          handleClickIncreaseQuantity={this.props.handleClickIncreaseQuantity}
+          handleClickDecreaseQuantity={ this.props.handleClickDecreaseQuantity }/>;
       });
       return cartSummary;
     }
