@@ -8,6 +8,8 @@ export default class CartSummaryItem extends React.Component {
     this.convertedPrice = this.convertedPrice.bind(this);
     this.convertImage = this.convertImage.bind(this);
     this.totalItemPrice = this.totalItemPrice.bind(this);
+    this.disableDecreaseButton = this.disableDecreaseButton.bind(this);
+    this.muteDecreseButton = this.muteDecreseButton.bind(this);
   }
 
   convertImage() {
@@ -38,6 +40,16 @@ export default class CartSummaryItem extends React.Component {
     return '$' + totalItemPrice;
   }
 
+  disableDecreaseButton() {
+    return (this.props.product.count < 2);
+  }
+
+  muteDecreseButton() {
+    return (this.props.product.count < 2)
+      ? 'border col-2 d-flex justify-content-center white-bg px-4 muted-button'
+      : 'border col-2 d-flex justify-content-center white-bg px-4 ';
+  }
+
   componentDidMount() {
 
     fetch(`/api/products/${this.props.product.productId}`)
@@ -65,8 +77,9 @@ export default class CartSummaryItem extends React.Component {
             <div className="col-12 d-flex justify-content-center">
               <div className="d-flex col-10">
                 <button
-                  className={'border col-2 d-flex justify-content-center white-bg px-4' }
-                  onClick={() => this.props.handleClickDecreaseQuantity(this.props.product.productId)}>
+                  className={this.muteDecreseButton()}
+                  onClick={() => this.props.handleClickDecreaseQuantity(this.props.product.productId)}
+                  disabled={this.disableDecreaseButton()}>
                   <i className="fas fa-minus fa-sm align-self-center"></i>
                 </button>
                 <div className="border-top border-bottom col d-flex justify-content-center">
