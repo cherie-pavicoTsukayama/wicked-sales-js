@@ -46,7 +46,7 @@ export default class CartSummary extends React.Component {
     } else {
       let total = 0;
       for (let i = 0; i < items.length; i++) {
-        total += items[i].price;
+        total = total + (items[i].count * items[i].price);
       }
       const stringTotal = total.toString();
 
