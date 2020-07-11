@@ -81,7 +81,6 @@ export default class App extends React.Component {
             fadeOut={this.state.fadeOut}
             closeModal={this.handleCloseOpeningModal} />
         </div>
-
       );
     }
     if (view === 'cart') {
@@ -101,7 +100,6 @@ export default class App extends React.Component {
         placeOrder={this.placeOrder}
         setView={this.setView}/>;
     }
-
   }
 
   getCartItems() {

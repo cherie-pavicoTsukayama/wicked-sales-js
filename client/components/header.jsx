@@ -14,8 +14,7 @@ export default function Header(props) {
             <i className="fas fa-tools pr-2"></i>Technicali</h6>
         </div>
         <div>
-          <h6 className="m-0 pointer" onClick={handleClick}> {props.cartItemCount} Items<i className="fas fa-shopping-cart fa-lg mr-3 ml-2"></i> </h6>
-
+          <h6 className="m-0 pointer text-center" onClick={handleClick}> {props.cartItemCount} Items<i className="fas fa-shopping-cart fa-lg mr-3 ml-2"></i> </h6>
         </div>
       </header>
     </div>

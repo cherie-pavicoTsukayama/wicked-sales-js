@@ -263,6 +263,9 @@ html {
   .item-card {
     width: 48%;
   }
+  .detail-image-display-container {
+  margin-right: 0px;
+ }
  }
 
  /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
@@ -274,33 +277,33 @@ html {
   and (orientation: portrait) {
   .item-card {
     width: 100%;
- }
- .smaller-text {
-   font-size: .8rem;
- }
- .text-size-4 {
-  font-size: 2rem;
- }
-.detail-image-display-container {
-  margin-right: 0px;
-}
-.detail-image-display {
-  height: 200px;
-  object-fit: contain;
-}
-.thumbnail-container {
-  height: 50px;
-  background-color: white;
-}
-.toast-container {
-  position: fixed;
-  top: 0px;
-  z-index: 1;
-}
-.toast-body-container {
-  background-color: rgb(250, 171, 73);
-  height: 60px;
-}
+  }
+  .smaller-text {
+    font-size: .8rem;
+  }
+  .text-size-4 {
+    font-size: 2rem;
+  }
+  .detail-image-display-container {
+    margin-right: 0px;
+  }
+  .detail-image-display {
+    height: 200px;
+    object-fit: contain;
+  }
+  .thumbnail-container {
+    height: 50px;
+    background-color: white;
+  }
+  .toast-container {
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+  }
+  .toast-body-container {
+    background-color: rgb(250, 171, 73);
+    height: 60px;
+  }
 
 }
 
@@ -315,5 +318,15 @@ html {
     width: 100%;
     padding-top: 10%;
   }
-
+  .container {
+    max-width: 100%;
+    margin: auto;
+  }
+  h4.iphone-678-landscape {
+    font-size: 1.2rem;
+  }
+ .thumbnail-container {
+    height: 50px;
+    background-color: white;
+  }
 }
