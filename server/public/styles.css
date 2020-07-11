@@ -168,7 +168,6 @@ html {
 .toast-body-container {
   background-color: rgb(250, 171, 73);
   height: 4vw;
-
 }
 
 .w-60 {
@@ -292,6 +291,15 @@ html {
 .thumbnail-container {
   height: 50px;
   background-color: white;
+}
+.toast-container {
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+}
+.toast-body-container {
+  background-color: rgb(250, 171, 73);
+  height: 60px;
 }
 
 }
