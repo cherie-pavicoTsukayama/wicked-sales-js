@@ -289,6 +289,10 @@ html {
   height: 200px;
   object-fit: contain;
 }
+.thumbnail-container {
+  height: 50px;
+  background-color: white;
+}
 
 }
 

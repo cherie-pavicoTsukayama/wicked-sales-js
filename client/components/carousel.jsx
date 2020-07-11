@@ -38,7 +38,7 @@ export default class Carousel extends React.Component {
   createCarousel() {
     if (this.props.images.length > 1) {
       return (
-        <div className="col-12 align-content-center d-flex border-top  py-3">
+        <div className="col-12 align-content-center d-flex border-top  py-3 px-0">
           <button id="prev" className="btn carousel-button" onClick={this.handleClickPrev}>
             <i className="fas fa-chevron-left"></i>
           </button>
