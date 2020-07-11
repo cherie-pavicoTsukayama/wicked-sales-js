@@ -74,7 +74,7 @@ export default class App extends React.Component {
       return (
         <div>
           <HeaderVideo fadeIn={this.state.fadeIn}/>
-          <Toast product={this.state.product} display={this.state.toast}/>
+          <Toast product={this.state.product} display={this.state.toast} setView={this.setView}/>
           <ProductList addToCart={ this.addToCart }
             setView={this.setView}
             showModal={this.state.showModal}
