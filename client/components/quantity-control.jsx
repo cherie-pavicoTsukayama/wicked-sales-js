@@ -9,7 +9,7 @@ export default function Quantity(props) {
   }
 
   return (
-    <div className="d-flex col-8">
+    <div className="d-flex col-8 p-0">
       <button
         className={`border col-2 d-flex justify-content-center white-bg px-4 ${muted}`}
         onClick={props.handleClickDecrease} disabled={ disable }>

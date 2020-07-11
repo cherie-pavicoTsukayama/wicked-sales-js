@@ -168,7 +168,6 @@ html {
 .toast-body-container {
   background-color: rgb(250, 171, 73);
   height: 4vw;
-
 }
 
 .w-60 {
@@ -191,8 +190,7 @@ html {
 }
 
 .detail-image-display-container {
-  height: 70%;
-  width: 100%;
+  margin-right: 20px;
 }
 
 .detail-image-display {
@@ -255,6 +253,8 @@ html {
   font-size: .75rem;
 }
 
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+/* Portrait */
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
@@ -262,9 +262,14 @@ html {
   and (-webkit-min-device-pixel-ratio: 1) {
   .item-card {
     width: 48%;
+  }
+  .detail-image-display-container {
+  margin-right: 0px;
  }
  }
 
+ /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+ /* Portrait */
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -272,15 +277,38 @@ html {
   and (orientation: portrait) {
   .item-card {
     width: 100%;
- }
- .smaller-text {
-   font-size: .8rem;
- }
- .text-size-4 {
-  font-size: 2rem;
- }
+  }
+  .smaller-text {
+    font-size: .8rem;
+  }
+  .text-size-4 {
+    font-size: 2rem;
+  }
+  .detail-image-display-container {
+    margin-right: 0px;
+  }
+  .detail-image-display {
+    height: 200px;
+    object-fit: contain;
+  }
+  .thumbnail-container {
+    height: 50px;
+    background-color: white;
+  }
+  .toast-container {
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+  }
+  .toast-body-container {
+    background-color: rgb(250, 171, 73);
+    height: 60px;
+  }
+
 }
 
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+/* Landscape */
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -290,5 +318,48 @@ html {
     width: 100%;
     padding-top: 10%;
   }
+  .container {
+    max-width: 100%;
+    margin: auto;
+  }
+  h4.iphone-678-landscape {
+    font-size: 1.2rem;
+  }
+ .thumbnail-container {
+    height: 50px;
+    background-color: white;
+  }
+}
 
+/* ----------- iPhone X ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+  .item-card {
+    width: 45%;
+  }
+  .detail-image-display-container {
+    margin-right: 0px;
+  }
+  h4.iphone-678-landscape {
+    font-size: 1.2rem;
+  }
+}
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .item-card {
+    width: 45%;
+  }
+    h4.iphone-678-landscape {
+    font-size: 1.2rem;
+  }
 }

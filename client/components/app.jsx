@@ -60,9 +60,15 @@ export default class App extends React.Component {
   display() {
     const view = this.state.view.name;
     if (view === 'details') {
-      return <ProductDetails productId={this.state.view.params}
-        setView={ this.setView }
-        addToCart={ this.addToCart }/>;
+      return (
+        <div>
+          <Toast product={this.state.product} display={this.state.toast} />
+          <ProductDetails productId={this.state.view.params}
+            setView={this.setView}
+            addToCart={this.addToCart} />;
+        </div>
+      );
+
     }
     if (view === 'catalog') {
       return (
@@ -75,7 +81,6 @@ export default class App extends React.Component {
             fadeOut={this.state.fadeOut}
             closeModal={this.handleCloseOpeningModal} />
         </div>
-
       );
     }
     if (view === 'cart') {
@@ -95,7 +100,6 @@ export default class App extends React.Component {
         placeOrder={this.placeOrder}
         setView={this.setView}/>;
     }
-
   }
 
   getCartItems() {
@@ -117,7 +121,7 @@ export default class App extends React.Component {
   addToCart(product, quantity) {
     this.setState({
       product: product,
-      toast: 'toast-body-container col d-flex justify-content-center'
+      toast: 'toast-body-container col d-flex justify-content-center shadow'
     });
     setTimeout(() => {
       this.setState({ toast: 'display-none' });
