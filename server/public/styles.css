@@ -191,8 +191,7 @@ html {
 }
 
 .detail-image-display-container {
-  height: 70%;
-  width: 100%;
+  margin-right: 20px;
 }
 
 .detail-image-display {
@@ -255,6 +254,8 @@ html {
   font-size: .75rem;
 }
 
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+/* Portrait */
 @media only screen
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
@@ -262,9 +263,11 @@ html {
   and (-webkit-min-device-pixel-ratio: 1) {
   .item-card {
     width: 48%;
- }
+  }
  }
 
+ /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+ /* Portrait */
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)
@@ -279,8 +282,18 @@ html {
  .text-size-4 {
   font-size: 2rem;
  }
+.detail-image-display-container {
+  margin-right: 0px;
+}
+.detail-image-display {
+  height: 200px;
+  object-fit: contain;
 }
 
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+/* Landscape */
 @media only screen
   and (min-device-width: 375px)
   and (max-device-width: 667px)

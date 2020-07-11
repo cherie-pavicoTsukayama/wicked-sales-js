@@ -65,7 +65,9 @@ export default class ProductDetails extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`api/products/${this.props.productId.productId}`)
+    fetch('api/products/2')
+
+    // fetch(`api/products/${this.props.productId.productId}`)
       .then(res => res.json())
       .then(data => {
         const imageArray = data.image.split(',');
@@ -91,16 +93,16 @@ export default class ProductDetails extends React.Component {
           <div className="col-sm-5 pt-3 pl-3 spacing">
             <p className="pointer" onClick={ this.handleClickBackToCatalog }><i className="fas fa-chevron-circle-left"></i> Back to catalog</p>
           </div>
-          <div className="d-flex justify-content-between">
-            <div className="card d-flex w-60 mr-4 justify-content-around">
-              <div className="detail-image-display-container d-flex">
-                <img className="col-12 detail-image-display align-self-center" src={ this.state.mainImage } alt="" />
+          <div className="d-flex flex-wrap justify-content-between">
+            <div className="card col d-flex justify-content-around detail-image-display-container">
+              <div className=" d-flex">
+                <img className="col-12 detail-image-display align-self-center" src={this.state.mainImage} alt="" />
               </div>
               <div>
-                <Carousel images={this.state.images} selectMainImage={this.handleClickSelectMainImage}/>
+                <Carousel images={this.state.images} selectMainImage={this.handleClickSelectMainImage} />
               </div>
             </div>
-            <div className="card col-4 d-flex flex-wrap flex-column justify-content-center py-4 px-4">
+            <div className="card col-sm-4 d-flex flex-wrap flex-column justify-content-center py-4 px-4">
               <h2>{ this.state.product.name }</h2>
               <h3 className="mt-3">{ this.convertPrice(this.state.product.price) }</h3>
               <p> {this.state.product.shortDescription}</p>
