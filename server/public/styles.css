@@ -348,3 +348,18 @@ html {
     font-size: 1.2rem;
   }
 }
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: landscape)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .item-card {
+    width: 45%;
+  }
+    h4.iphone-678-landscape {
+    font-size: 1.2rem;
+  }
+}

@@ -65,9 +65,7 @@ export default class ProductDetails extends React.Component {
   }
 
   componentDidMount() {
-    fetch('api/products/2')
-
-    // fetch(`api/products/${this.props.productId.productId}`)
+    fetch(`api/products/${this.props.productId.productId}`)
       .then(res => res.json())
       .then(data => {
         const imageArray = data.image.split(',');
