@@ -5,7 +5,15 @@ export default function Toast(props) {
   return (
     <div className='toast-container d-flex justify-content-center col-12 p-0 '>
       <div className={`${props.display}`}>
-        <p className="text-center m-0 align-self-center">{`${name} has been added to your cart`}.</p>
+        <p className="text-center m-0 align-self-center">{`${name} has been added
+          to your `}
+        <span
+          className="font-weight-bold pointer"
+          onClick={() => props.setView('cart')
+          }>
+            cart.
+        </span>
+        </p>
       </div>
     </div>
   );
