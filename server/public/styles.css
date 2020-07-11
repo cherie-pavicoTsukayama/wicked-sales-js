@@ -330,3 +330,21 @@ html {
     background-color: white;
   }
 }
+
+/* ----------- iPhone X ----------- */
+/* Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) {
+  .item-card {
+    width: 45%;
+  }
+  .detail-image-display-container {
+    margin-right: 0px;
+  }
+  h4.iphone-678-landscape {
+    font-size: 1.2rem;
+  }
+}
